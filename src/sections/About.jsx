@@ -8,11 +8,13 @@ export default function About() {
     <Section id="about" className="bg-white dark:bg-slate-900">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         {/* Placeholder for Photo */}
-        <div className="hidden md:block relative h-96 w-full rounded-2xl overflow-hidden shadow-2xl bg-slate-200 dark:bg-slate-800">
-          <div className="absolute inset-0 flex items-center justify-center text-slate-400 dark:text-slate-600">
-            {/* User can replace this with an img tag */}
-            <span className="text-lg">Tu Foto Aquí</span>
-          </div>
+        <div className="hidden md:block relative h-full min-h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl border-2 border-slate-100 dark:border-slate-800">
+          <img
+            src="/assets/profile.jpg"
+            alt={profile.name}
+            className="w-full h-full object-cover object-center scale-105 hover:scale-100 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-60"></div>
         </div>
 
         <div>

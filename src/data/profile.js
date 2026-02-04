@@ -1,8 +1,8 @@
 export const profile = {
   name: "Alejandro Ruiz Gasch",
-  role: "Full Stack Developer",
-  shortBio: "Building scalable web solutions with modern technologies.",
-  fullBio: "Soy un desarrollador Full Stack apasionado por crear aplicaciones web eficientes y escalables. Tengo experiencia desarrollando soluciones SaaS en el sector alimenticio y una sólida base en technologies modernas.",
+  role: "Full Stack Developer & AI Engineer",
+  shortBio: "Building scalable web solutions and intelligent multi-agent workflows.",
+  fullBio: "Soy un desarrollador Full Stack apasionado por crear aplicaciones web eficientes y escalables. Tengo experiencia desarrollando soluciones SaaS en el sector alimenticio y un profundo conocimiento en inteligencia artificial, especializándome en sistemas multi-agente, workflows avanzados y técnicas de desarrollo asistido por IA.",
   contact: {
     email: "alexrg32@icloud.com",
     phone: "+34 634 959 264",

@@ -2,8 +2,8 @@ export const skills = [
   {
     category: "Backend",
     items: [
-      { name: "Laravel", level: "Advanced" },
       { name: "Spring Boot", level: "Intermediate" },
+      { name: "Laravel", level: "Advanced" },
       { name: "Node.js", level: "Intermediate" },
       { name: "SQL", level: "Intermediate" }
     ]
@@ -15,6 +15,15 @@ export const skills = [
       { name: "JavaScript (ES6+)", level: "Advanced" },
       { name: "Tailwind CSS", level: "Advanced" },
       { name: "HTML/CSS", level: "Advanced" }
+    ]
+  },
+  {
+    category: "AI & Automation",
+    items: [
+      { name: "Multi-Agent Workflows", level: "Advanced" },
+      { name: "LLM Integration", level: "Advanced" },
+      { name: "AI-Driven Development", level: "Expert" },
+      { name: "Agentic Patterns", level: "Advanced" }
     ]
   },
   {

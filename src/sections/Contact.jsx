@@ -8,7 +8,7 @@ export default function Contact() {
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl font-bold text-slate-900 dark:text-white sm:text-4xl mb-8">Hablemos</h2>
         <p className="text-lg text-slate-600 dark:text-slate-400 mb-12">
-          Estoy disponible para nuevas oportunidades. ¿Tienes un proyecto en mente o quieres saber más sobre mi experiencia? ¡Contáctame!
+          Estoy en búsqueda activa de nuevos retos profesionales. Si buscas un perfil técnico comprometido y con ganas de aportar valor, ¡hablemos!
         </p>
 
         <div className="grid md:grid-cols-2 gap-8">

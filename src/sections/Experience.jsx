@@ -28,7 +28,19 @@ export default function Experience() {
             </div>
 
             <p className="text-slate-600 dark:text-slate-300 mb-4 text-lg">
-              {job.description}
+              {job.description} {job.link && (
+                <a
+                  href={job.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-600 dark:text-primary-400 hover:underline font-medium inline-flex items-center gap-1"
+                >
+                  Visitar sitio
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              )}
             </p>
 
             <ul className="list-disc list-outside ml-5 space-y-1 text-slate-600 dark:text-slate-400 mb-4">

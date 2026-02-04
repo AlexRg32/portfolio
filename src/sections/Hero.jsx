@@ -18,7 +18,7 @@ export default function Hero() {
           {profile.name}
         </h1>
         <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-600 dark:text-slate-300">
-          {profile.role} especializado en <span className="text-primary-600 dark:text-primary-400 font-semibold">Laravel</span>, <span className="text-primary-600 dark:text-primary-400 font-semibold">Spring Boot</span> y <span className="text-primary-600 dark:text-primary-400 font-semibold">React</span>.
+          <span className="text-primary-600 dark:text-primary-400 font-bold">{profile.role}</span>. Especializado en <span className="font-semibold text-slate-800 dark:text-slate-200">Spring Boot</span>, <span className="font-semibold text-slate-800 dark:text-slate-200">Laravel</span> y <span className="font-semibold text-slate-800 dark:text-slate-200">AI Workflows</span>.
         </p>
         <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-500 dark:text-slate-400">
           {profile.shortBio}

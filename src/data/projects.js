@@ -1,23 +1,33 @@
 export const projects = [
   {
-    id: 1,
-    title: "SaaS Fichas Técnicas (Infoexpo)",
-    description: "Plataforma web para la gestión integral de fichas técnicas de productos alimenticios, asegurando cumplimiento normativo y eficiencia operativa.",
-    techStack: ["React", "Laravel", "Tailwind CSS"],
-    image: null, // Placeholder will be used
-    githubLink: "",
+    id: 3,
+    title: "Gestión de Peluquerías y Barberías",
+    description: "Plataforma integral (SaaS) para la gestión de peluquerías y barberías. Incluye gestión de citas, servicios, empleados y analíticas de negocio en tiempo real. Arquitectura robusta y escalable.",
+    techStack: ["Spring Boot", "React", "Docker", "PostgreSQL"],
+    image: "/assets/gestipelu.jpg",
+    githubLink: "https://github.com/AlexRg32/peluqueria-saas",
     liveLink: "",
+    status: "En desarrollo",
+    featured: true
+  },
+  {
+    id: 1,
+    title: "Fichatec - Gestión de Ingredientes y Alérgenos",
+    description: "SaaS profesional especializado en la gestión automatizada de fichas técnicas, control de ingredientes y gestión de alérgenos para la industria alimentaria, optimizando la seguridad y el cumplimiento normativo.",
+    techStack: ["Laravel", "Bootstrap", "JavaScript"],
+    image: "/assets/fichatec.jpg",
+    githubLink: "",
+    liveLink: "https://www.fichatec.com/",
     featured: true
   },
   {
     id: 2,
-    title: "Portfolio Personal",
-    description: "Este sitio web, construido con React y Tailwind CSS para mostrar mis habilidades y proyectos.",
-    techStack: ["React", "Tailwind CSS", "Vite"],
-    image: null,
-    githubLink: "https://github.com/AlexRg32/portfolio",
-    liveLink: "",
-    featured: false
+    title: "La Bandida Burger",
+    description: "Landing page para una hamburguesería local en Crevillente, diseñada para destacar su propuesta gastronómica y facilitar el acceso a información clave.",
+    techStack: ["React", "Tailwind CSS", "Framer Motion"],
+    image: "/assets/la-bandida.png",
+    githubLink: "",
+    liveLink: "https://la-bandida.netlify.app",
+    featured: true
   }
-  // User can fill this later
 ];
