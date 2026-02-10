@@ -5,8 +5,7 @@ export const projects = [
     description: "Plataforma integral (SaaS) para la gestión de peluquerías y barberías. Incluye gestión de citas, servicios, empleados y analíticas de negocio en tiempo real. Arquitectura robusta y escalable.",
     techStack: ["Spring Boot", "React", "Docker", "PostgreSQL"],
     image: "/assets/gestipelu.jpg",
-    githubLink: "https://github.com/AlexRg32/peluqueria-saas",
-    liveLink: "",
+    liveLink: "https://peluqueria-saas-three.vercel.app",
     status: "En desarrollo",
     featured: true
   },
@@ -16,7 +15,6 @@ export const projects = [
     description: "SaaS profesional especializado en la gestión automatizada de fichas técnicas, control de ingredientes y gestión de alérgenos para la industria alimentaria, optimizando la seguridad y el cumplimiento normativo.",
     techStack: ["Laravel", "Bootstrap", "JavaScript"],
     image: "/assets/fichatec.jpg",
-    githubLink: "",
     liveLink: "https://www.fichatec.com/",
     featured: true
   },
@@ -26,7 +24,6 @@ export const projects = [
     description: "Landing page para una hamburguesería local en Crevillente, diseñada para destacar su propuesta gastronómica y facilitar el acceso a información clave.",
     techStack: ["React", "Tailwind CSS", "Framer Motion"],
     image: "/assets/la-bandida.png",
-    githubLink: "",
     liveLink: "https://la-bandida.netlify.app",
     featured: true
   }
