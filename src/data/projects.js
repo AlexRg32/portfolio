@@ -1,5 +1,23 @@
 export const projects = [
   {
+    id: 4,
+    title: "Autoescuela D'Click",
+    description: "Landing page moderna y dinámica para una autoescuela, diseñada para captar nuevos alumnos, presentar cursos intensivos y facilitar una matriculación rápida.",
+    techStack: ["React", "Tailwind CSS", "Framer Motion"],
+    image: "/assets/AUTOESCUELA.png",
+    liveLink: "https://autoescuela-dclick.netlify.app",
+    featured: true
+  },
+  {
+    id: 5,
+    title: "Espectáculos Baluarte",
+    description: "Plataforma web para una gran empresa de espectáculos y eventos, con un diseño inmersivo ideal para mostrar sus grandiosas carrozas, ballets y luchas.",
+    techStack: ["React", "Tailwind CSS", "Vite"],
+    image: "/assets/carrozas.png",
+    liveLink: "https://espectaculosbaluarte.netlify.app",
+    featured: true
+  },
+  {
     id: 3,
     title: "Gestión de Peluquerías y Barberías",
     description: "Plataforma integral (SaaS) para la gestión de peluquerías y barberías. Incluye gestión de citas, servicios, empleados y analíticas de negocio en tiempo real. Arquitectura robusta y escalable.",
