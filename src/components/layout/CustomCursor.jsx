@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useMousePosition } from '../../hooks/useMousePosition';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 export default function CustomCursor() {
   const { x, y } = useMousePosition();
@@ -10,12 +11,20 @@ export default function CustomCursor() {
   const posRef = useRef({ x: 0, y: 0 });
   const outerPosRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef(null);
+  const isTouch = useMediaQuery('(hover: none) and (pointer: coarse)');
 
-  // Check for touch device
-  const [isTouch, setIsTouch] = useState(false);
   useEffect(() => {
-    setIsTouch(window.matchMedia('(hover: none) and (pointer: coarse)').matches);
-  }, []);
+    if (isTouch) {
+      document.documentElement.classList.remove('has-custom-cursor');
+      return undefined;
+    }
+
+    document.documentElement.classList.add('has-custom-cursor');
+
+    return () => {
+      document.documentElement.classList.remove('has-custom-cursor');
+    };
+  }, [isTouch]);
 
   // Lerp animation loop
   useEffect(() => {

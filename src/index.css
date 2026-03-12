@@ -13,7 +13,7 @@
 
 /* ─── Base Layer ─── */
 @layer base {
-  * {
+  html.has-custom-cursor * {
     cursor: none;
   }
 
@@ -31,6 +31,11 @@
   ::selection {
     background-color: rgba(255, 255, 255, 0.15);
     color: #fafafa;
+  }
+
+  :focus-visible {
+    outline: 2px solid #fafafa;
+    outline-offset: 4px;
   }
 
   /* Hide custom cursor on touch devices */

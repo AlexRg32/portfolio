@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollDirection } from '../../hooks/useScrollDirection';
@@ -13,13 +13,9 @@ export default function Navbar() {
   const isScrolled = scrollY > 50;
   const isVisible = scrollDirection === 'up' || scrollY < 50 || menuOpen;
 
-  // Close menu on route change
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname]);
-
   return (
     <motion.nav
+      aria-label="Navegacion principal"
       className="fixed top-0 left-0 right-0 z-[100] transition-all duration-600 ease-out-expo"
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
@@ -36,6 +32,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             to="/"
+            onClick={() => setMenuOpen(false)}
             className="text-text font-display font-semibold text-xl tracking-tight hover:opacity-70 transition-opacity duration-300"
           >
             AR<span className="text-text-dim">.</span>
@@ -65,6 +62,8 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden flex flex-col gap-1.5 p-2"
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
           >
             <span
               className={`block w-6 h-px bg-text transition-all duration-400 ease-out-expo ${
@@ -89,6 +88,7 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="md:hidden bg-bg/95 backdrop-blur-xl border-b border-border overflow-hidden"
+            id="mobile-navigation"
           >
             <div className="container-wide py-8 flex flex-col gap-6">
               {NAV_LINKS.map((link, i) => (

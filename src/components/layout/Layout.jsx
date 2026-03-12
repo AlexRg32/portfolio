@@ -10,8 +10,14 @@ export default function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-bg">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-text focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-bg"
+      >
+        Saltar al contenido
+      </a>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <AnimatePresence mode="wait">
           <Outlet key={location.pathname} />
         </AnimatePresence>
