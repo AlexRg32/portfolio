@@ -32,7 +32,7 @@ export default function FeaturedWork() {
           <div className="mb-12 md:mb-16">
             <div className="line-separator mb-6 md:mb-8 w-full max-w-40 bg-white" />
             <p className="text-white text-sm font-body uppercase tracking-[0.3em] mb-4">
-              Seleccion Destacada
+              Selección Destacada
             </p>
             <h2 className="text-display-md font-display text-white max-w-2xl">
               Sistemas que escalan y marcas que impactan.
@@ -78,7 +78,7 @@ export default function FeaturedWork() {
                       to={`/work/${project.id}`}
                       className="inline-flex rounded-full border border-border px-6 py-3 text-xs md:text-sm uppercase tracking-[0.2em] text-text transition-all duration-300 hover:bg-text hover:text-bg"
                     >
-                      Ver Case Study
+                      Ver detalle
                     </MagneticButton>
                     <MagneticButton
                       as="a"
@@ -87,7 +87,7 @@ export default function FeaturedWork() {
                       rel="noopener noreferrer"
                       className="inline-flex rounded-full border border-border-light px-6 py-3 text-xs md:text-sm uppercase tracking-[0.2em] text-text-dim transition-all duration-300 hover:border-text hover:text-text"
                     >
-                      Ver Online
+                      Abrir web
                     </MagneticButton>
                   </div>
                 </div>
@@ -158,7 +158,7 @@ export default function FeaturedWork() {
                   to={`/work/${project.id}`}
                   className="flex-shrink-0 text-xs md:text-sm uppercase tracking-[0.2em] text-text border border-border px-6 py-3 hover:bg-text hover:text-bg transition-all duration-300 rounded-full"
                 >
-                  Ver Case Study
+                  Ver detalle
                 </MagneticButton>
               </div>
             </div>

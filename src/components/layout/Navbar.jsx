@@ -15,7 +15,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      aria-label="Navegacion principal"
+      aria-label="Navegación principal"
       className="fixed top-0 left-0 right-0 z-[100] transition-all duration-600 ease-out-expo"
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}

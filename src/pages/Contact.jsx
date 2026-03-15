@@ -8,7 +8,7 @@ import { fadeUp, staggerContainer } from '../utils/animations';
 
 const contactChannels = [
   {
-    label: 'Email',
+    label: 'Correo',
     value: profile.contact.email,
     href: `mailto:${profile.contact.email}`,
   },
@@ -23,7 +23,7 @@ const contactChannels = [
     href: SOCIAL_LINKS.github,
   },
   {
-    label: 'Telefono',
+    label: 'Teléfono',
     value: profile.contact.phone,
     href: `tel:${profile.contact.phone.replace(/\s+/g, '')}`,
   },
@@ -34,7 +34,7 @@ export default function Contact() {
     <PageTransition>
       <RouteMeta
         title="Contacto | Alejandro Ruiz"
-        description="Habla con Alejandro Ruiz para lanzar una web, producto o automatizacion con mejor criterio tecnico, identidad visual y foco en resultado."
+        description="Habla con Alejandro Ruiz para lanzar una web, producto o automatización con mejor criterio técnico, identidad visual y foco en resultado."
         path="/contact"
       />
       <section className="relative overflow-hidden bg-bg pt-32 md:pt-40">
@@ -60,7 +60,7 @@ export default function Contact() {
               variants={fadeUp}
               className="mt-8 max-w-3xl text-lg md:text-xl font-body leading-relaxed text-text-muted"
             >
-              Trabajo con negocios, estudios y marcas que buscan una presencia digital mas seria, mas afinada y mejor ejecutada.
+              Trabajo con negocios, estudios y marcas que buscan una presencia digital más seria, más afinada y mejor ejecutada.
             </motion.p>
 
             <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
@@ -89,14 +89,14 @@ export default function Contact() {
           >
             <p className="text-sm uppercase tracking-[0.28em] text-text-dim">Lo que puedes esperar</p>
             <div className="mt-8 space-y-5 text-base md:text-lg font-body leading-relaxed text-text-muted">
-              <p>Respuesta clara, propuesta concreta y enfoque tecnico desde la primera conversacion.</p>
-              <p>Capacidad para moverme entre diseno, frontend, backend y automatizacion cuando el proyecto lo necesita.</p>
-              <p>Una ejecucion cuidada que prioriza velocidad, conversion y una identidad visual con caracter.</p>
+              <p>Respuesta clara, propuesta concreta y enfoque técnico desde la primera conversación.</p>
+              <p>Capacidad para moverme entre diseño, interfaz, servidor y automatización cuando el proyecto lo necesita.</p>
+              <p>Una ejecución cuidada que prioriza velocidad, conversión y una identidad visual con carácter.</p>
             </div>
             <div className="mt-8 rounded-[24px] border border-white/8 bg-black/30 p-6">
               <p className="text-sm uppercase tracking-[0.22em] text-text-dim">Encaje ideal</p>
               <p className="mt-4 text-base font-body leading-relaxed text-text-muted">
-                Webs de negocio, producto SaaS, relanzamientos visuales o automatizaciones donde haga falta unir claridad, identidad y ejecucion tecnica.
+                Webs de negocio, producto SaaS, relanzamientos visuales o automatizaciones donde haga falta unir claridad, identidad y ejecución técnica.
               </p>
               <p className="mt-4 text-sm uppercase tracking-[0.22em] text-text-dim">
                 Respuesta habitual: 24-48 horas

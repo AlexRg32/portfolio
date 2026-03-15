@@ -58,7 +58,7 @@ export default function ProjectDetail() {
                 variants={fadeUp}
                 className="mb-5 text-sm font-body uppercase tracking-[0.3em] text-text-dim"
               >
-                Case Study
+                Caso real
               </motion.p>
               <motion.h1
                 variants={fadeUp}
@@ -90,14 +90,14 @@ export default function ProjectDetail() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center rounded-full bg-text px-8 py-4 text-sm font-body uppercase tracking-[0.2em] text-bg transition-colors duration-300 hover:bg-white"
                 >
-                  Ver proyecto online
+                  Ver proyecto en vivo
                 </MagneticButton>
                 <MagneticButton
                   as={Link}
                   to="/contact"
                   className="inline-flex items-center rounded-full border border-border-light px-8 py-4 text-sm font-body uppercase tracking-[0.2em] text-text transition-colors duration-300 hover:border-text hover:bg-text hover:text-bg"
                 >
-                  Quiero algo asi
+                  Quiero algo así
                 </MagneticButton>
               </div>
             </motion.div>
@@ -127,7 +127,7 @@ export default function ProjectDetail() {
           </div>
 
           <div className="rounded-[28px] border border-border bg-black p-8 md:p-10">
-            <p className="mb-6 text-sm uppercase tracking-[0.28em] text-text-dim">Solucion</p>
+            <p className="mb-6 text-sm uppercase tracking-[0.28em] text-text-dim">Solución</p>
             <div className="space-y-5 text-base md:text-lg font-body leading-relaxed text-text-muted">
               {project.caseStudy.solution.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>

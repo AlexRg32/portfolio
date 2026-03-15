@@ -1,38 +1,38 @@
 export const skills = [
   {
-    category: "Backend",
+    category: "Servidor",
     items: [
-      { name: "Spring Boot", level: "Intermediate" },
-      { name: "Laravel", level: "Advanced" },
-      { name: "Node.js", level: "Intermediate" },
-      { name: "SQL", level: "Intermediate" }
+      { name: "Spring Boot", level: "Intermedio" },
+      { name: "Laravel", level: "Avanzado" },
+      { name: "Node.js", level: "Intermedio" },
+      { name: "SQL", level: "Intermedio" }
     ]
   },
   {
-    category: "Frontend",
+    category: "Interfaz",
     items: [
-      { name: "React", level: "Advanced" },
-      { name: "JavaScript (ES6+)", level: "Advanced" },
-      { name: "Tailwind CSS", level: "Advanced" },
-      { name: "HTML/CSS", level: "Advanced" }
+      { name: "React", level: "Avanzado" },
+      { name: "JavaScript (ES6+)", level: "Avanzado" },
+      { name: "Tailwind CSS", level: "Avanzado" },
+      { name: "HTML/CSS", level: "Avanzado" }
     ]
   },
   {
-    category: "AI & Automation",
+    category: "IA y automatización",
     items: [
-      { name: "Multi-Agent Workflows", level: "Advanced" },
-      { name: "LLM Integration", level: "Advanced" },
-      { name: "AI-Driven Development", level: "Expert" },
-      { name: "Agentic Patterns", level: "Advanced" }
+      { name: "Flujos multiagente", level: "Avanzado" },
+      { name: "Integración de LLM", level: "Avanzado" },
+      { name: "Desarrollo asistido por IA", level: "Experto" },
+      { name: "Patrones de automatización", level: "Avanzado" }
     ]
   },
   {
-    category: "Soft Skills",
+    category: "Habilidades blandas",
     items: [
-      { name: "Trato al Cliente", level: "Excellent" },
-      { name: "Inglés", level: "Upper-Intermediate" },
-      { name: "Aprendizaje Rápido", level: "High" },
-      { name: "Trabajo en Equipo", level: "High" }
+      { name: "Trato al cliente", level: "Excelente" },
+      { name: "Inglés", level: "B2 alto" },
+      { name: "Aprendizaje rápido", level: "Alto" },
+      { name: "Trabajo en equipo", level: "Alto" }
     ]
   }
 ];

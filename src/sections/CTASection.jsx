@@ -18,7 +18,7 @@ export default function CTASection() {
           variants={fadeUp}
           className="text-text-dim text-sm font-body uppercase tracking-[0.3em] mb-8"
         >
-          Next Steps
+          Siguiente paso
         </motion.p>
         
         <motion.h2 

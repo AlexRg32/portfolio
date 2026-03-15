@@ -24,7 +24,7 @@ export default function AboutPreview() {
             as="h2" 
             className="text-display-md md:text-[clamp(2.5rem,5vw,5rem)] font-display text-text leading-[1.1] tracking-tight"
           >
-            No hago plantillas. Escribo código a medida para empresas que se toman el diseño en serio y quieren devorar a su competencia.
+            Nada de plantillas genéricas: construyo soluciones a medida para empresas que quieren destacar con una web clara, cuidada y útil.
           </TextReveal>
         </div>
 

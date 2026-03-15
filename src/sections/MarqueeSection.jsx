@@ -1,11 +1,11 @@
 import React from 'react';
 
 const techStackTop = [
-  'React', 'Three.js', 'Next.js', 'WebGL', 'Framer Motion', 'GSAP', 'React Native', 'TypeScript',
+  'PHP', 'Laravel', 'React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'MySQL', 'PostgreSQL',
 ];
 
 const techStackBottom = [
-  'Node.js', 'Spring Boot', 'Python', 'Agentic AI', 'PostgreSQL', 'Docker', 'AWS', 'LLMs',
+  'Node.js', 'Spring Boot', 'Docker', 'Git', 'APIs REST', 'Automatización', 'SEO técnico', 'Arquitectura web',
 ];
 
 export default function MarqueeSection() {

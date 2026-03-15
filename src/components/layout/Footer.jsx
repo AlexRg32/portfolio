@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-bg">
       <div className="container-wide py-12 md:py-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-          {/* Left — Brand */}
+          {/* Izquierda — Marca */}
           <div>
             <Link
               to="/"
@@ -15,11 +15,11 @@ export default function Footer() {
               AR<span className="text-text-dim">.</span>
             </Link>
             <p className="text-text-dim text-sm mt-2 font-body">
-              Creative Developer & AI Engineer
+              Desarrollo web y producto digital
             </p>
           </div>
 
-          {/* Center — Quick Links */}
+          {/* Centro — Enlaces */}
           <div className="flex gap-8 text-sm font-body">
             <Link to="/work" className="text-text-muted hover:text-text transition-colors duration-300">
               Trabajo
@@ -32,7 +32,7 @@ export default function Footer() {
             </Link>
           </div>
 
-          {/* Right — Social */}
+          {/* Derecha — Redes */}
           <div className="flex gap-6">
             <a
               href={SOCIAL_LINKS.github}
@@ -59,7 +59,7 @@ export default function Footer() {
             <a
               href={`mailto:${SOCIAL_LINKS.email}`}
               className="text-text-dim hover:text-text transition-colors duration-300"
-              aria-label="Email"
+              aria-label="Correo"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
@@ -68,13 +68,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom line */}
+        {/* Franja inferior */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-text-dim text-xs font-body">
             © {new Date().getFullYear()} Alejandro Ruiz Gasch. Todos los derechos reservados.
           </p>
           <p className="text-text-dim text-xs font-body">
-            Diseñado & Desarrollado con pasión
+            Diseñado y desarrollado con cariño
           </p>
         </div>
       </div>

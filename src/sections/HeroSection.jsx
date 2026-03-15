@@ -14,14 +14,14 @@ export default function HeroSection() {
 
   return (
     <section className="h-[100svh] flex items-center justify-center relative overflow-hidden">
-      {/* 3D WebGL Background Layer */}
+      {/* Capa de fondo interactiva */}
       {shouldRenderScene && (
         <Suspense fallback={null}>
           <Scene />
         </Suspense>
       )}
 
-      {/* Typography Layer */}
+      {/* Capa tipografica */}
       <motion.div
         variants={staggerContainer}
         initial="hidden"
@@ -32,7 +32,7 @@ export default function HeroSection() {
           variants={fadeUp}
           className="mx-auto inline-flex items-center rounded-full border border-white/10 bg-black/25 px-4 py-2 text-text-dim text-[10px] md:text-xs font-body uppercase tracking-[0.3em] mb-5 md:mb-7 backdrop-blur-md"
         >
-          Creative Developer & AI Engineer
+          Desarrollo web con foco en negocio
         </motion.p>
         <motion.h1
           variants={fadeUp}
@@ -46,7 +46,7 @@ export default function HeroSection() {
           variants={fadeUp}
           className="mt-6 md:mt-10 text-text-muted text-base md:text-lg font-body max-w-2xl mx-auto mix-blend-difference"
         >
-          Construyo interfaces con caracter, sistemas robustos y automatizaciones inteligentes para marcas que necesitan algo mas que una web bonita.
+          Te ayudo a lanzar una web clara, rápida y con personalidad, construida con tecnología sólida para que no se quede pequeña en seis meses.
         </motion.p>
 
         <motion.div
@@ -73,17 +73,17 @@ export default function HeroSection() {
           variants={fadeUp}
           className="mt-10 flex flex-wrap items-center justify-center gap-3 text-[11px] md:text-xs font-body uppercase tracking-[0.22em] text-text-dim"
         >
-          <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md">React / Three.js</span>
-          <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md">LLMs / Agentes</span>
-          <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md">Backend / Arquitectura</span>
+          <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md">PHP / Laravel / React</span>
+          <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md">JavaScript / TypeScript</span>
+          <span className="rounded-full border border-white/10 bg-black/20 px-4 py-2 backdrop-blur-md">APIs / Servidor / SaaS</span>
         </motion.div>
 
-        {/* Scroll indicator */}
+        {/* Indicador de desplazamiento */}
         <motion.div
           variants={fadeUp}
           className="absolute left-1/2 -translate-x-1/2 bottom-[-15vh] md:bottom-[-20vh] flex flex-col items-center gap-3"
         >
-          <span className="text-text-dim text-[10px] font-body uppercase tracking-[0.2em]">Scroll</span>
+          <span className="text-text-dim text-[10px] font-body uppercase tracking-[0.2em]">Baja</span>
           <motion.div
             className="w-px h-16 bg-border-light"
             animate={{ scaleY: [0, 1, 0], translateY: [0, 0, 40] }}

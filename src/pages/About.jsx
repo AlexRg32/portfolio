@@ -11,8 +11,8 @@ export default function About() {
   return (
     <PageTransition>
       <RouteMeta
-        title="Sobre Mi | Alejandro Ruiz"
-        description="Perfil de Alejandro Ruiz: full stack developer y AI engineer enfocado en producto digital, sistemas robustos y ejecucion visual cuidada."
+        title="Sobre mí | Alejandro Ruiz"
+        description="Perfil de Alejandro Ruiz: desarrollador web especializado en PHP, React, Laravel y JavaScript para producto digital."
         path="/about"
       />
       <section className="relative overflow-hidden bg-bg pt-32 md:pt-40">
@@ -29,10 +29,10 @@ export default function About() {
               variants={fadeUp}
               className="mb-5 text-sm font-body uppercase tracking-[0.3em] text-text-dim"
             >
-              Sobre Mi
+              Sobre Mí
             </motion.p>
             <motion.h1 variants={fadeUp} className="max-w-4xl text-display-lg font-display text-text">
-              Desarrollo productos digitales con obsesion por el detalle y la utilidad.
+              Desarrollo productos digitales con obsesión por el detalle y la utilidad.
             </motion.h1>
           </div>
 
@@ -138,9 +138,9 @@ export default function About() {
 
       <section className="bg-bg py-20 md:py-28">
         <div className="container-wide rounded-[32px] border border-border bg-surface/70 p-8 text-center md:p-12">
-          <p className="text-sm uppercase tracking-[0.28em] text-text-dim">Colaboracion</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-text-dim">Colaboración</p>
           <h2 className="mx-auto mt-4 max-w-4xl text-display-sm font-display text-text">
-            Trabajo mejor con equipos que quieren criterio tecnico, ejecucion rapida y una experiencia visual realmente cuidada.
+            Trabajo mejor con equipos que quieren criterio técnico, ejecución rápida y una experiencia visual realmente cuidada.
           </h2>
           <div className="mt-10">
             <MagneticButton

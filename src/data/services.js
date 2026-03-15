@@ -1,22 +1,22 @@
 export const services = [
   {
     id: '01',
-    title: 'Desarrollo Web & Creative Coding',
-    description: 'Interfaces memorables y altamente interactivas usando React, 3D WebGL (Three.js) y animaciones fluidas que diferencian tu marca de la competencia.'
+    title: 'Desarrollo web a medida',
+    description: 'Webs y aplicaciones modernas con PHP, Laravel, React y JavaScript, pensadas para cargar rápido, convertir mejor y ser fáciles de mantener.'
   },
   {
     id: '02',
-    title: 'Ingeniería IA & Agentes',
-    description: 'Automatizaciones avanzadas, integración de LLMs, flujos de Machine Learning y agentes autónomos para escalar la inteligencia de tu negocio operativamente.'
+    title: 'Aplicaciones SaaS y paneles internos',
+    description: 'Diseño y desarrollo de herramientas para gestionar clientes, procesos y operaciones del día a día con una experiencia clara para tu equipo.'
   },
   {
     id: '03',
-    title: 'Sistemas Backend & Arquitectura',
-    description: 'APIs escalables, microservicios robustos y arquitecturas orientadas a eventos en la nube, diseñadas para máxima seguridad y alta concurrencia (Spring Boot, Node.js).'
+    title: 'Servidor, APIs y arquitectura',
+    description: 'Construcción de bases sólidas con Laravel, Node.js o Spring Boot para que tu producto crezca sin cuellos de botella.'
   },
   {
     id: '04',
-    title: 'Diseño UI/UX Premium',
-    description: 'De la conceptualización a la ejecución visual. Sistemas de diseño oscuros, estética minimalista y flujos de usuario obsesionados con la conversión.'
+    title: 'Mejora de interfaz y conversión',
+    description: 'Ajusto estructura, textos y experiencia para que tu web sea más clara, transmita confianza y facilite que el usuario contacte o compre.'
   }
 ];

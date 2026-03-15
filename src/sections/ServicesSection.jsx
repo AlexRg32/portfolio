@@ -100,7 +100,7 @@ export default function ServicesSection() {
             transition={{ duration: 0.65 }}
             className="font-display text-display-sm leading-tight text-white md:text-display-md"
           >
-            Que puedo
+            Qué puedo
             <br />
             hacer por ti
           </motion.h2>
@@ -111,8 +111,8 @@ export default function ServicesSection() {
             transition={{ duration: 0.6, delay: 0.08 }}
             className="mx-auto mt-6 max-w-2xl font-body text-base leading-relaxed text-text-muted md:text-lg"
           >
-            Una seccion, cuatro frentes de trabajo y una misma idea: convertir
-            tu vision en producto real, elegante y rentable.
+            Una sección, cuatro frentes de trabajo y una misma idea: convertir
+            tu visión en producto real, elegante y rentable.
           </motion.p>
         </div>
 

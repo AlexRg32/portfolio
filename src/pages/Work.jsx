@@ -11,7 +11,7 @@ export default function Work() {
     <PageTransition>
       <RouteMeta
         title="Trabajo Seleccionado | Alejandro Ruiz"
-        description="Seleccion de proyectos web, SaaS y experiencias digitales construidas por Alejandro Ruiz con foco en claridad, conversion y mantenibilidad."
+        description="Selección de proyectos web, SaaS y experiencias digitales construidas por Alejandro Ruiz con foco en claridad, conversión y mantenibilidad."
         path="/work"
         schema={{
           '@context': 'https://schema.org',
@@ -40,13 +40,13 @@ export default function Work() {
             Trabajo Seleccionado
           </motion.p>
           <motion.h1 variants={fadeUp} className="max-w-5xl text-display-lg font-display text-text">
-            Productos, landings y sistemas pensados para mover negocio, no solo pixels.
+            Productos, páginas de captación y sistemas pensados para mover negocio, no solo píxeles.
           </motion.h1>
           <motion.p
             variants={fadeUp}
             className="mt-8 max-w-3xl text-lg md:text-xl font-body leading-relaxed text-text-muted"
           >
-            Aqui tienes una seleccion de proyectos donde he trabajado interfaz, arquitectura y experiencia de usuario con foco real en conversion, claridad y mantenimiento.
+            Aquí tienes una selección de proyectos donde he trabajado interfaz, arquitectura y experiencia de usuario con foco real en conversión, claridad y mantenimiento.
           </motion.p>
         </motion.div>
       </section>

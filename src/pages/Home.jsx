@@ -11,14 +11,14 @@ export default function Home() {
   return (
     <PageTransition>
       <RouteMeta
-        title="Alejandro Ruiz | Creative Developer & AI Engineer"
-        description="Portfolio de Alejandro Ruiz: desarrollo web, interfaces premium, sistemas SaaS y automatizacion con IA para marcas y productos digitales."
+        title="Alejandro Ruiz | Desarrollo web con PHP, React y Laravel"
+        description="Portafolio de Alejandro Ruiz: desarrollo web y SaaS con PHP, React, Laravel y JavaScript para negocios que buscan una web clara y efectiva."
         path="/"
         schema={{
           '@context': 'https://schema.org',
           '@type': 'Person',
           name: 'Alejandro Ruiz Gasch',
-          jobTitle: 'Creative Developer & AI Engineer',
+          jobTitle: 'Desarrollador web',
           url: 'https://alejandroruiz.netlify.app/',
           sameAs: [
             'https://github.com/AlexRg32',
