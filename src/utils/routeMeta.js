@@ -6,7 +6,7 @@ export const SITE = {
   title: 'Alejandro Ruiz | Full-Stack Developer',
   description:
     'Portfolio profesional de Alejandro Ruiz, full-stack developer con experiencia en React, Laravel, Spring Boot, PHP, PostgreSQL y producto digital.',
-  url: 'https://alejandroruiz.netlify.app/',
+  url: 'https://alexrg.es/',
   image: profile.photo ?? '/assets/profile.jpg',
 };
 
