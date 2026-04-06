@@ -99,6 +99,15 @@ export function getContactMeta() {
   });
 }
 
+export function getPrivacyMeta() {
+  return createMeta({
+    title: 'Privacidad y analítica | Alejandro Ruiz',
+    description:
+      'Información clara sobre cómo Alejandro Ruiz mide tráfico y comportamiento en este portfolio usando Plausible y, si se acepta, Microsoft Clarity.',
+    path: '/privacy',
+  });
+}
+
 export function getNotFoundMeta() {
   return createMeta({
     title: 'Página no encontrada | Alejandro Ruiz',
@@ -133,6 +142,7 @@ export function getPrerenderRoutes() {
     { path: '/work', meta: getWorkMeta() },
     { path: '/about', meta: getAboutMeta() },
     { path: '/contact', meta: getContactMeta() },
+    { path: '/privacy', meta: getPrivacyMeta() },
     { path: '/404', meta: getNotFoundMeta() },
     ...projects.map((project) => ({
       path: `/work/${project.id}`,

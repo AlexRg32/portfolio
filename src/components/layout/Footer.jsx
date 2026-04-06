@@ -1,8 +1,16 @@
 import { Link } from 'react-router-dom';
 import { SOCIAL_LINKS } from '../../utils/constants';
 import { profile } from '../../data/profile';
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from '../../utils/analytics';
 
 export default function Footer() {
+  const trackFooterEvent = (eventName, target) => () => {
+    trackAnalyticsEvent(eventName, {
+      section: 'footer',
+      target,
+    });
+  };
+
   return (
     <footer className="bg-bg pb-8 pt-10 md:pb-10">
       <div className="container-wide">
@@ -36,6 +44,9 @@ export default function Footer() {
                   <Link to="/contact" className="hover:text-text">
                     Contacto
                   </Link>
+                  <Link to="/privacy" className="hover:text-text">
+                    Privacidad
+                  </Link>
                 </div>
               </div>
 
@@ -48,6 +59,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="button-secondary min-h-11 min-w-11 px-4 py-3"
                     aria-label="GitHub"
+                    onClick={trackFooterEvent(ANALYTICS_EVENTS.githubClick, 'github')}
                   >
                     GitHub
                   </a>
@@ -57,6 +69,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="button-secondary min-h-11 min-w-11 px-4 py-3"
                     aria-label="LinkedIn"
+                    onClick={trackFooterEvent(ANALYTICS_EVENTS.linkedinClick, 'linkedin')}
                   >
                     LinkedIn
                   </a>
@@ -64,6 +77,7 @@ export default function Footer() {
                     href={`mailto:${SOCIAL_LINKS.email}`}
                     className="button-secondary min-h-11 min-w-11 px-4 py-3"
                     aria-label="Correo"
+                    onClick={trackFooterEvent(ANALYTICS_EVENTS.emailClick, 'email')}
                   >
                     Email
                   </a>
@@ -76,7 +90,12 @@ export default function Footer() {
 
           <div className="flex flex-col gap-3 text-sm text-text-dim md:flex-row md:items-center md:justify-between">
             <p>© {new Date().getFullYear()} Alejandro Ruiz Gasch. Todos los derechos reservados.</p>
-            <p>Disponible para oportunidades en producto digital</p>
+            <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+              <p>Disponible para oportunidades en producto digital</p>
+              <Link to="/privacy" className="hover:text-text">
+                Privacidad y analítica
+              </Link>
+            </div>
           </div>
         </div>
       </div>

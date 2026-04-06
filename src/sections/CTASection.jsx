@@ -2,9 +2,17 @@ import { motion } from 'framer-motion';
 import MagneticButton from '../components/ui/MagneticButton';
 import { SOCIAL_LINKS } from '../utils/constants';
 import { profile } from '../data/profile';
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from '../utils/analytics';
 import { fadeUp, staggerContainer, viewportConfig } from '../utils/animations';
 
 export default function CTASection() {
+  const trackCtaEvent = (eventName, target) => () => {
+    trackAnalyticsEvent(eventName, {
+      section: 'home-cta',
+      target,
+    });
+  };
+
   return (
     <section className="relative z-10 bg-bg py-24 md:py-32">
       <motion.div
@@ -40,7 +48,12 @@ export default function CTASection() {
             variants={fadeUp}
             className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap"
           >
-            <MagneticButton as="a" href={`mailto:${SOCIAL_LINKS.email}`} className="button-primary w-full sm:w-auto">
+            <MagneticButton
+              as="a"
+              href={`mailto:${SOCIAL_LINKS.email}`}
+              className="button-primary w-full sm:w-auto"
+              onClick={trackCtaEvent(ANALYTICS_EVENTS.emailClick, 'email')}
+            >
               Escribir por email
             </MagneticButton>
             <MagneticButton
@@ -49,6 +62,7 @@ export default function CTASection() {
               target="_blank"
               rel="noopener noreferrer"
               className="button-secondary w-full sm:w-auto"
+              onClick={trackCtaEvent(ANALYTICS_EVENTS.linkedinClick, 'linkedin')}
             >
               Abrir LinkedIn
             </MagneticButton>

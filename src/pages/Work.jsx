@@ -5,12 +5,21 @@ import PageTransition from '../components/layout/PageTransition';
 import RouteMeta from '../components/seo/RouteMeta';
 import { projects } from '../data/projects';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from '../utils/analytics';
 import { getWorkMeta } from '../utils/routeMeta';
 
 export default function Work() {
   const pageRef = useRef(null);
   useScrollReveal(pageRef);
   const sortedProjects = [...projects].sort((a, b) => a.priority - b.priority);
+
+  const trackProjectEvent = (eventName, project, surface) => () => {
+    trackAnalyticsEvent(eventName, {
+      project_id: String(project.id),
+      project_name: project.title,
+      surface,
+    });
+  };
 
   return (
     <PageTransition>
@@ -53,6 +62,7 @@ export default function Work() {
                 <div className={`grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center ${index % 2 === 1 ? 'lg:grid-cols-[0.95fr_1.05fr]' : ''}`}>
                   <Link
                     to={`/work/${project.id}`}
+                    onClick={trackProjectEvent(ANALYTICS_EVENTS.projectOpen, project, 'image')}
                     className={`${index % 2 === 1 ? 'lg:order-2' : ''} block overflow-hidden rounded-[26px] border border-border/40`}
                   >
                     <img
@@ -88,7 +98,12 @@ export default function Work() {
                     </div>
 
                     <div className="mt-8 flex flex-wrap gap-3">
-                      <MagneticButton as={Link} to={`/work/${project.id}`} className="button-primary">
+                      <MagneticButton
+                        as={Link}
+                        to={`/work/${project.id}`}
+                        className="button-primary"
+                        onClick={trackProjectEvent(ANALYTICS_EVENTS.projectOpen, project, 'button')}
+                      >
                         Ver caso
                       </MagneticButton>
                       <MagneticButton
@@ -97,6 +112,7 @@ export default function Work() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="button-secondary"
+                        onClick={trackProjectEvent(ANALYTICS_EVENTS.projectDemoClick, project, 'work-list')}
                       >
                         Abrir demo
                       </MagneticButton>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import MagneticButton from '../components/ui/MagneticButton';
 import { profile } from '../data/profile';
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from '../utils/analytics';
 
 const heroFacts = [
   'React / Laravel / PHP',
@@ -14,6 +15,13 @@ function LinkIcon({ children }) {
 }
 
 export default function HeroSection() {
+  const trackHeroEvent = (eventName, target) => () => {
+    trackAnalyticsEvent(eventName, {
+      section: 'hero',
+      target,
+    });
+  };
+
   return (
     <section className="relative overflow-hidden bg-bg pb-24 pt-32 md:pb-32 md:pt-44">
       <div className="absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_top_left,rgba(122,175,255,0.16),transparent_34%),radial-gradient(circle_at_top_right,rgba(177,206,255,0.12),transparent_30%)]" />
@@ -34,7 +42,12 @@ export default function HeroSection() {
           </div>
 
           <div className="mt-10 flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
-            <MagneticButton as={Link} to="/work" className="button-primary w-full sm:w-auto">
+            <MagneticButton
+              as={Link}
+              to="/work"
+              className="button-primary w-full sm:w-auto"
+              onClick={trackHeroEvent(ANALYTICS_EVENTS.workView, 'work')}
+            >
               Ver proyectos
             </MagneticButton>
             {profile.resumeUrl && (
@@ -44,6 +57,7 @@ export default function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="button-secondary w-full sm:w-auto"
+                onClick={trackHeroEvent(ANALYTICS_EVENTS.cvView, 'resume')}
               >
                 Ver CV
               </MagneticButton>
@@ -54,6 +68,7 @@ export default function HeroSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="button-secondary w-full sm:w-auto"
+              onClick={trackHeroEvent(ANALYTICS_EVENTS.linkedinClick, 'linkedin')}
             >
               LinkedIn
             </MagneticButton>
@@ -78,6 +93,7 @@ export default function HeroSection() {
           <div className="mt-10 grid gap-3 sm:max-w-[34rem] sm:grid-cols-2">
             <a
               href={`mailto:${profile.contact.email}`}
+              onClick={trackHeroEvent(ANALYTICS_EVENTS.emailClick, 'email')}
               className="group inline-flex items-center justify-between gap-3 rounded-[18px] border border-border/45 bg-surface/18 px-4 py-4 text-base text-text transition-colors duration-300 hover:border-border-light/70 hover:bg-surface/28"
             >
               <span className="inline-flex min-w-0 items-center gap-3">
@@ -100,6 +116,7 @@ export default function HeroSection() {
               href={profile.social.github}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackHeroEvent(ANALYTICS_EVENTS.githubClick, 'github')}
               className="group inline-flex items-center justify-between gap-3 rounded-[18px] border border-border/45 bg-surface/18 px-4 py-4 text-base text-text transition-colors duration-300 hover:border-border-light/70 hover:bg-surface/28"
             >
               <span className="inline-flex items-center gap-3">

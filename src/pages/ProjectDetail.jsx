@@ -5,6 +5,7 @@ import PageTransition from '../components/layout/PageTransition';
 import RouteMeta from '../components/seo/RouteMeta';
 import { projects } from '../data/projects';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { ANALYTICS_EVENTS, trackAnalyticsEvent } from '../utils/analytics';
 import { getProjectMeta } from '../utils/routeMeta';
 
 export default function ProjectDetail() {
@@ -16,6 +17,14 @@ export default function ProjectDetail() {
   if (!project) {
     return <Navigate to="/work" replace />;
   }
+
+  const trackProjectEvent = (eventName, surface) => () => {
+    trackAnalyticsEvent(eventName, {
+      project_id: String(project.id),
+      project_name: project.title,
+      surface,
+    });
+  };
 
   return (
     <PageTransition>
@@ -58,10 +67,16 @@ export default function ProjectDetail() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="button-primary w-full sm:w-auto"
+                    onClick={trackProjectEvent(ANALYTICS_EVENTS.projectDemoClick, 'project-detail')}
                   >
                     Ver proyecto en vivo
                   </MagneticButton>
-                  <MagneticButton as={Link} to="/contact" className="button-secondary w-full sm:w-auto">
+                  <MagneticButton
+                    as={Link}
+                    to="/contact"
+                    className="button-secondary w-full sm:w-auto"
+                    onClick={trackProjectEvent(ANALYTICS_EVENTS.contactClick, 'project-detail')}
+                  >
                     Contactar
                   </MagneticButton>
                 </div>
