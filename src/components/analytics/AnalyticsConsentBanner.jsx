@@ -12,14 +12,13 @@ export default function AnalyticsConsentBanner({ onAccept, onReject }) {
       <div className="mx-auto max-w-5xl rounded-[28px] border border-border-light/70 bg-bg/92 p-5 shadow-[0_18px_48px_rgba(5,10,24,0.28)] backdrop-blur-xl sm:p-6">
         <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
-            <p className="eyebrow">Analítica avanzada</p>
+            <p className="eyebrow">Privacidad</p>
             <h2 id="analytics-consent-title" className="mt-3 font-display text-2xl leading-tight text-text sm:text-3xl">
-              ¿Quieres activar mapas de calor y grabaciones anónimas?
+              Uso analítica opcional para entender mejor cómo se usa la web.
             </h2>
             <p id="analytics-consent-description" className="mt-3 max-w-3xl text-sm leading-7 text-text-muted sm:text-base">
-              El tráfico básico se mide con Plausible. Si aceptas esta opción adicional, también se activará
-              Microsoft Clarity para ver recorridos, clics y mapas de calor sin exponer formularios ni datos
-              sensibles. Puedes leer más en{' '}
+              Si aceptas, podré ver información de uso de forma agregada y mejorar la experiencia del sitio.
+              Si prefieres no activarla, la web seguirá funcionando igual. Más información en{' '}
               <Link to="/privacy" className="text-text underline decoration-border-light underline-offset-4 hover:text-accent">
                 privacidad y analítica
               </Link>.
@@ -28,10 +27,10 @@ export default function AnalyticsConsentBanner({ onAccept, onReject }) {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-end">
             <button type="button" onClick={onReject} className="button-secondary min-h-11 w-full sm:w-auto">
-              Ahora no
+              Rechazar
             </button>
             <button type="button" onClick={onAccept} className="button-primary min-h-11 w-full sm:w-auto">
-              Activar Clarity
+              Aceptar
             </button>
           </div>
         </div>
