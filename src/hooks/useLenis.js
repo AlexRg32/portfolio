@@ -19,6 +19,32 @@ export function useLenis() {
     });
 
     lenisRef.current = lenis;
+    let disposeScrollBridge = () => {};
+    let isDisposed = false;
+
+    import('../utils/gsap').then(({ ScrollTrigger }) => {
+      if (isDisposed) {
+        return;
+      }
+
+      const syncScrollTrigger = () => {
+        ScrollTrigger.update();
+      };
+      const syncLenisDimensions = () => {
+        lenis.resize();
+      };
+
+      lenis.on('scroll', syncScrollTrigger);
+      ScrollTrigger.addEventListener('refresh', syncLenisDimensions);
+      requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+
+      disposeScrollBridge = () => {
+        lenis.off('scroll', syncScrollTrigger);
+        ScrollTrigger.removeEventListener('refresh', syncLenisDimensions);
+      };
+    });
 
     function raf(time) {
       lenis.raf(time);
@@ -28,7 +54,9 @@ export function useLenis() {
     rafRef.current = requestAnimationFrame(raf);
 
     return () => {
+      isDisposed = true;
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      disposeScrollBridge();
       lenis.destroy();
       lenisRef.current = null;
     };

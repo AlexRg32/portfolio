@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const PARTICLE_COUNT = 5000;
+const PARTICLE_COUNT = 1800;
 
 function createSeededRandom(seed) {
   let value = seed;
@@ -48,15 +48,30 @@ export default function HeroGeometry() {
   }, []);
 
   useFrame((state, delta) => {
-    if (!pointsRef.current) return;
-    
-    // Rotación lenta constante, como una galaxia o red neuronal viva
-    pointsRef.current.rotation.y += delta * 0.05;
-    pointsRef.current.rotation.x += delta * 0.02;
-    
-    // Parallax muy sutil interactuando con el ratón
-    pointsRef.current.rotation.x += (target.current.y * 0.15 - pointsRef.current.rotation.x) * 0.02;
-    pointsRef.current.rotation.y += (target.current.x * 0.15 - pointsRef.current.rotation.y) * 0.02;
+    if (!pointsRef.current) {
+      return;
+    }
+
+    const points = pointsRef.current;
+    const elapsedTime = state.clock.elapsedTime;
+    const breathe = Math.sin(elapsedTime * 0.45);
+
+    const targetRotationX = Math.sin(elapsedTime * 0.22) * 0.04 + target.current.y * 0.08;
+    const targetRotationY = elapsedTime * 0.05 + target.current.x * 0.09;
+    const targetRotationZ = Math.cos(elapsedTime * 0.18) * 0.03;
+    const targetPositionY = Math.sin(elapsedTime * 0.34) * 0.12;
+    const targetPositionX = target.current.x * 0.08;
+    const targetScale = 0.98 + breathe * 0.02;
+
+    points.rotation.x = THREE.MathUtils.lerp(points.rotation.x, targetRotationX, delta * 1.35);
+    points.rotation.y = THREE.MathUtils.lerp(points.rotation.y, targetRotationY, delta * 0.95);
+    points.rotation.z = THREE.MathUtils.lerp(points.rotation.z, targetRotationZ, delta * 1.1);
+    points.position.x = THREE.MathUtils.lerp(points.position.x, targetPositionX, delta * 1.2);
+    points.position.y = THREE.MathUtils.lerp(points.position.y, targetPositionY, delta * 1.15);
+
+    const currentScale = points.scale.x || 1;
+    const nextScale = THREE.MathUtils.lerp(currentScale, targetScale, delta * 1.25);
+    points.scale.setScalar(nextScale);
   });
 
   return (
@@ -71,11 +86,11 @@ export default function HeroGeometry() {
       </bufferGeometry>
       {/* Material premium aditivo: Los puntos se suman al solaparse creando brillo */}
       <pointsMaterial
-        size={0.015}
-        color="#ffffff"
-        transparent={true}
-        opacity={0.4}
-        sizeAttenuation={true}
+        size={0.02}
+        color="#9fc1ff"
+        transparent
+        opacity={0.42}
+        sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
       />

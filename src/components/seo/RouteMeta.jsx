@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { resolveMetaUrls } from '../../utils/routeMeta';
 
 function upsertMeta(selector, attributes) {
   let element = document.head.querySelector(selector);
@@ -26,17 +27,19 @@ function upsertLink(selector, attributes) {
   });
 }
 
-export default function RouteMeta({
-  title,
-  description,
-  path = '/',
-  image = '/favicon.png',
-  type = 'website',
-  schema,
-}) {
+function removeNode(selector) {
+  const element = document.head.querySelector(selector);
+  if (element) {
+    element.remove();
+  }
+}
+
+export default function RouteMeta({ meta }) {
   useEffect(() => {
-    const canonicalUrl = new URL(path, window.location.origin).toString();
-    const imageUrl = new URL(image, window.location.origin).toString();
+    if (!meta) return undefined;
+
+    const resolvedMeta = resolveMetaUrls(meta);
+    const { title, description, type, canonicalUrl, imageUrl, schema, noIndex } = resolvedMeta;
 
     document.title = title;
 
@@ -51,21 +54,26 @@ export default function RouteMeta({
     upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: description });
     upsertMeta('meta[name="twitter:image"]', { name: 'twitter:image', content: imageUrl });
     upsertLink('link[rel="canonical"]', { rel: 'canonical', href: canonicalUrl });
+    if (noIndex) {
+      upsertMeta('meta[name="robots"]', { name: 'robots', content: 'noindex, nofollow' });
+    } else {
+      removeNode('meta[name="robots"]');
+    }
 
-    let schemaTag = null;
+    document.head
+      .querySelectorAll('script[data-route-schema="true"]')
+      .forEach((element) => element.remove());
 
     if (schema) {
-      schemaTag = document.createElement('script');
+      const schemaTag = document.createElement('script');
       schemaTag.type = 'application/ld+json';
       schemaTag.dataset.routeSchema = 'true';
       schemaTag.textContent = JSON.stringify(schema);
       document.head.appendChild(schemaTag);
     }
 
-    return () => {
-      if (schemaTag) schemaTag.remove();
-    };
-  }, [description, image, path, schema, title, type]);
+    return undefined;
+  }, [meta]);
 
   return null;
 }

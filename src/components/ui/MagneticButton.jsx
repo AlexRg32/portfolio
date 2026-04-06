@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 
-export default function MagneticButton({ children, className = '', as: Tag = 'button', strength = 0.3, ...props }) {
+export default function MagneticButton({ children, className = '', as: Tag = 'button', strength = 0.12, ...props }) {
   const ref = useRef(null);
   const [transform, setTransform] = useState({ x: 0, y: 0 });
 
@@ -26,7 +26,8 @@ export default function MagneticButton({ children, className = '', as: Tag = 'bu
       onMouseLeave={handleMouseLeave}
       style={{
         transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-        transition: transform.x === 0 ? 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)' : 'none',
+        transition: transform.x === 0 ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none',
+        willChange: 'transform',
       }}
       {...props}
     >

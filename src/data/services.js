@@ -1,22 +1,26 @@
 export const services = [
   {
     id: '01',
-    title: 'Desarrollo web a medida',
-    description: 'Webs y aplicaciones modernas con PHP, Laravel, React y JavaScript, pensadas para cargar rápido, convertir mejor y ser fáciles de mantener.'
+    title: 'Frontend claro y usable',
+    description:
+      'Trabajo bien la jerarquía, los estados y la legibilidad para que una interfaz sea fácil de usar y también fácil de evolucionar.'
   },
   {
     id: '02',
-    title: 'Aplicaciones SaaS y paneles internos',
-    description: 'Diseño y desarrollo de herramientas para gestionar clientes, procesos y operaciones del día a día con una experiencia clara para tu equipo.'
+    title: 'Capacidad full-stack real',
+    description:
+      'Puedo moverme entre frontend, backend, datos y despliegue cuando hace falta sacar producto adelante sin perder visión global.'
   },
   {
     id: '03',
-    title: 'Servidor, APIs y arquitectura',
-    description: 'Construcción de bases sólidas con Laravel, Node.js o Spring Boot para que tu producto crezca sin cuellos de botella.'
+    title: 'SaaS, paneles y operativa',
+    description:
+      'Me interesan especialmente los productos internos, los backoffice y los sistemas que mejoran procesos reales de equipo y negocio.'
   },
   {
     id: '04',
-    title: 'Mejora de interfaz y conversión',
-    description: 'Ajusto estructura, textos y experiencia para que tu web sea más clara, transmita confianza y facilite que el usuario contacte o compre.'
+    title: 'Buena colaboración de equipo',
+    description:
+      'Trabajo cómodo con feedback, prioridades cambiantes y ciclos de mejora continua, manteniendo claridad técnica y ritmo de entrega.'
   }
 ];

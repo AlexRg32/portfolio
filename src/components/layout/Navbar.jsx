@@ -16,39 +16,42 @@ export default function Navbar() {
   return (
     <motion.nav
       aria-label="Navegación principal"
-      className="fixed top-0 left-0 right-0 z-[100] transition-all duration-600 ease-out-expo"
+      className="fixed inset-x-0 top-0 z-[100] px-3 pt-3 transition-all duration-600 ease-out-expo sm:px-4"
       initial={{ y: 0 }}
       animate={{ y: isVisible ? 0 : -100 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
     >
       <div
-        className={`transition-all duration-500 ${
+        className={`mx-auto max-w-6xl rounded-full border transition-all duration-500 ${
           isScrolled
-            ? 'bg-bg/80 backdrop-blur-xl border-b border-border'
-            : 'bg-transparent'
+            ? 'border-border-light/60 bg-bg/68 shadow-[0_10px_30px_rgba(5,10,24,0.18)] backdrop-blur-xl'
+            : 'border-transparent bg-transparent'
         }`}
       >
-        <div className="container-wide flex justify-between items-center h-20">
-          {/* Logo */}
+        <div className="flex h-16 items-center justify-between px-4 sm:px-5">
           <Link
             to="/"
             onClick={() => setMenuOpen(false)}
-            className="text-text font-display font-semibold text-xl tracking-tight hover:opacity-70 transition-opacity duration-300"
+            className="flex items-center gap-3 text-text transition-opacity duration-300 hover:opacity-80"
           >
-            AR<span className="text-text-dim">.</span>
+            <span className="flex h-10 w-10 items-center justify-center rounded-full border border-border-light/70 bg-surface-light/40 font-display text-base font-semibold tracking-tight shadow-[0_8px_20px_rgba(7,13,28,0.18)]">
+              AR
+            </span>
+            <span className="hidden text-sm font-medium text-text-muted sm:block">
+              Alejandro Ruiz
+            </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden items-center gap-2 md:flex">
             {NAV_LINKS.map((link) => (
               <MagneticButton
                 key={link.path}
                 as={Link}
                 to={link.path}
-                strength={0.2}
-                className={`text-sm font-body font-medium tracking-wide uppercase transition-colors duration-300 ${
+                strength={0.08}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                   location.pathname === link.path
-                    ? 'text-text'
+                    ? 'border border-border/45 bg-surface/28 text-text'
                     : 'text-text-dim hover:text-text'
                 }`}
               >
@@ -57,10 +60,9 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1.5 rounded-full border border-border-light/70 bg-surface/60 p-2 text-text md:hidden"
             aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
@@ -87,10 +89,10 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden bg-bg/95 backdrop-blur-xl border-b border-border overflow-hidden"
+            className="mx-auto mt-3 max-w-6xl overflow-hidden rounded-[28px] border border-border-light/70 bg-bg/88 shadow-[0_18px_48px_rgba(5,10,24,0.28)] backdrop-blur-xl md:hidden"
             id="mobile-navigation"
           >
-            <div className="container-wide py-8 flex flex-col gap-6">
+            <div className="flex flex-col gap-3 p-4">
               {NAV_LINKS.map((link, i) => (
                 <motion.div
                   key={link.path}
@@ -101,10 +103,10 @@ export default function Navbar() {
                   <Link
                     to={link.path}
                     onClick={() => setMenuOpen(false)}
-                    className={`text-display-sm font-display block ${
+                    className={`block rounded-[20px] px-4 py-4 text-lg font-display ${
                       location.pathname === link.path
-                        ? 'text-text'
-                        : 'text-text-dim hover:text-text'
+                        ? 'bg-surface-light/60 text-text'
+                        : 'text-text-muted hover:bg-surface/45 hover:text-text'
                     } transition-colors duration-300`}
                   >
                     {link.name}

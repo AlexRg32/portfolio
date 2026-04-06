@@ -1,10 +1,11 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import MagneticButton from '../components/ui/MagneticButton';
 import PageTransition from '../components/layout/PageTransition';
 import RouteMeta from '../components/seo/RouteMeta';
-import MagneticButton from '../components/ui/MagneticButton';
 import { profile } from '../data/profile';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import { SOCIAL_LINKS } from '../utils/constants';
-import { fadeUp, staggerContainer } from '../utils/animations';
+import { getContactMeta } from '../utils/routeMeta';
 
 const contactChannels = [
   {
@@ -30,107 +31,119 @@ const contactChannels = [
 ];
 
 export default function Contact() {
+  const pageRef = useRef(null);
+  useScrollReveal(pageRef);
+
   return (
     <PageTransition>
-      <RouteMeta
-        title="Contacto | Alejandro Ruiz"
-        description="Habla con Alejandro Ruiz para lanzar una web, producto o automatización con mejor criterio técnico, identidad visual y foco en resultado."
-        path="/contact"
-      />
-      <section className="relative overflow-hidden bg-bg pt-32 md:pt-40">
-        <div className="absolute inset-x-0 top-0 h-[42rem] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.09),transparent_58%)] pointer-events-none" />
+      <div ref={pageRef}>
+        <RouteMeta meta={getContactMeta()} />
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-          className="container-wide relative z-10 grid gap-12 lg:grid-cols-[1fr_0.95fr]"
-        >
-          <div>
-            <motion.p
-              variants={fadeUp}
-              className="mb-5 text-sm font-body uppercase tracking-[0.3em] text-text-dim"
-            >
-              Contacto
-            </motion.p>
-            <motion.h1 variants={fadeUp} className="max-w-4xl text-display-lg font-display text-text">
-              Si quieres una web con criterio, personalidad y foco en resultado, podemos hablar.
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mt-8 max-w-3xl text-lg md:text-xl font-body leading-relaxed text-text-muted"
-            >
-              Trabajo con negocios, estudios y marcas que buscan una presencia digital más seria, más afinada y mejor ejecutada.
-            </motion.p>
+        <section className="relative overflow-hidden bg-bg pb-20 pt-32 md:pb-24 md:pt-44">
+          <div className="absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_top,rgba(108,160,255,0.18),transparent_42%)]" />
 
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
-              <MagneticButton
-                as="a"
-                href={`mailto:${profile.contact.email}`}
-                className="inline-flex items-center rounded-full bg-text px-8 py-4 text-sm font-body uppercase tracking-[0.2em] text-bg transition-colors duration-300 hover:bg-white"
-              >
-                {profile.contact.email}
-              </MagneticButton>
-              <MagneticButton
-                as="a"
-                href={SOCIAL_LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center rounded-full border border-border-light px-8 py-4 text-sm font-body uppercase tracking-[0.2em] text-text transition-colors duration-300 hover:border-text hover:bg-text hover:text-bg"
-              >
-                LinkedIn
-              </MagneticButton>
-            </motion.div>
+          <div className="container-wide relative z-10 grid gap-8 lg:grid-cols-[1fr_0.95fr] lg:items-start">
+            <div>
+              <p className="eyebrow">
+                Contacto profesional
+              </p>
+              <h1 className="mt-5 max-w-4xl font-display text-display-lg text-text">
+                Si buscas un perfil que pueda moverse entre interfaz, backend y producto, aquí estoy.
+              </h1>
+              <p className="mt-7 max-w-3xl text-base leading-8 text-text-muted md:text-lg">
+                Estoy abierto a oportunidades como {profile.role.toLowerCase()} en equipos que valoren
+                claridad técnica, buena ejecución y producto real.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <MagneticButton as="a" href={`mailto:${profile.contact.email}`} className="button-primary w-full sm:w-auto">
+                  Escribir por email
+                </MagneticButton>
+                {profile.resumeUrl && (
+                  <MagneticButton
+                    as="a"
+                    href={profile.resumeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="button-secondary w-full sm:w-auto"
+                  >
+                    Ver CV
+                  </MagneticButton>
+                )}
+                <MagneticButton
+                  as="a"
+                  href={SOCIAL_LINKS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-secondary w-full sm:w-auto"
+                >
+                  LinkedIn
+                </MagneticButton>
+                <MagneticButton
+                  as="a"
+                  href={SOCIAL_LINKS.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button-secondary w-full sm:w-auto"
+                >
+                  GitHub
+                </MagneticButton>
+              </div>
+            </div>
+
+            <div className="border-t border-border/45 pt-6">
+              <p className="eyebrow">Snapshot profesional</p>
+              <div className="mt-6 space-y-4 text-base leading-8 text-text-muted md:text-lg">
+                <p>Rol objetivo: {profile.targetRole}.</p>
+                <p>Modalidad: {profile.workMode}.</p>
+                <p>Disponibilidad: {profile.availability}.</p>
+              </div>
+              <div className="mt-8 border-t border-border/35 pt-6">
+                <p className="eyebrow">Dónde creo que encajo mejor</p>
+                <p className="mt-4 text-base leading-8 text-text-muted">
+                  Equipos de producto, SaaS y herramientas internas donde haga falta alguien capaz de
+                  aportar tanto en interfaz como en estructura técnica y ritmo de entrega.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  {profile.focusAreas.map((area) => (
+                    <span key={area} className="tag-chip">
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <motion.div
-            variants={fadeUp}
-            className="rounded-[32px] border border-border bg-surface/70 p-8 md:p-10"
+        <section className="bg-bg py-12 md:py-16">
+          <div
+            className="container-wide grid gap-x-10 gap-y-8 border-t border-border/45 pt-10 md:grid-cols-2"
+            data-gsap="group"
+            data-gsap-stagger="0.1"
+            data-gsap-start="top 84%"
           >
-            <p className="text-sm uppercase tracking-[0.28em] text-text-dim">Lo que puedes esperar</p>
-            <div className="mt-8 space-y-5 text-base md:text-lg font-body leading-relaxed text-text-muted">
-              <p>Respuesta clara, propuesta concreta y enfoque técnico desde la primera conversación.</p>
-              <p>Capacidad para moverme entre diseño, interfaz, servidor y automatización cuando el proyecto lo necesita.</p>
-              <p>Una ejecución cuidada que prioriza velocidad, conversión y una identidad visual con carácter.</p>
-            </div>
-            <div className="mt-8 rounded-[24px] border border-white/8 bg-black/30 p-6">
-              <p className="text-sm uppercase tracking-[0.22em] text-text-dim">Encaje ideal</p>
-              <p className="mt-4 text-base font-body leading-relaxed text-text-muted">
-                Webs de negocio, producto SaaS, relanzamientos visuales o automatizaciones donde haga falta unir claridad, identidad y ejecución técnica.
-              </p>
-              <p className="mt-4 text-sm uppercase tracking-[0.22em] text-text-dim">
-                Respuesta habitual: 24-48 horas
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      <section className="bg-bg py-20 md:py-28">
-        <div className="container-wide grid gap-6 md:grid-cols-2">
-          {contactChannels.map((channel, index) => (
-            <motion.a
-              key={channel.label}
-              href={channel.href}
-              target={channel.href.startsWith('http') ? '_blank' : undefined}
-              rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.05 }}
-              className="group rounded-[28px] border border-border bg-black p-8 transition-colors duration-300 hover:border-white/20"
-            >
-              <p className="text-sm uppercase tracking-[0.24em] text-text-dim">{channel.label}</p>
-              <p className="mt-6 text-2xl md:text-3xl font-display text-text break-words">
-                {channel.value}
-              </p>
-              <p className="mt-8 text-sm uppercase tracking-[0.22em] text-text-dim transition-colors duration-300 group-hover:text-text">
-                Abrir canal
-              </p>
-            </motion.a>
-          ))}
-        </div>
-      </section>
+            {contactChannels.map((channel) => (
+              <a
+                key={channel.label}
+                href={channel.href}
+                target={channel.href.startsWith('http') ? '_blank' : undefined}
+                rel={channel.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                data-gsap-item
+                className="group border-b border-border/35 pb-8"
+              >
+                <p className="eyebrow">{channel.label}</p>
+                <p className="mt-5 break-words font-display text-[clamp(1.8rem,4vw,2.8rem)] leading-tight text-text">
+                  {channel.value}
+                </p>
+                <p className="mt-6 text-sm uppercase tracking-[0.22em] text-text-dim transition-colors duration-300 group-hover:text-text">
+                  Abrir canal
+                </p>
+              </a>
+            ))}
+          </div>
+        </section>
+      </div>
     </PageTransition>
   );
 }

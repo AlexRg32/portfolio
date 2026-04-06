@@ -82,34 +82,33 @@ export default function CustomCursor() {
 
   return (
     <>
-      {/* Inner dot */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 pointer-events-none z-[10000] mix-blend-difference"
+        className="fixed left-0 top-0 z-[10000] pointer-events-none"
         style={{
           opacity: isHidden ? 0 : 1,
-          transition: 'opacity 0.3s ease, width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-          width: isHovering ? 48 : 8,
-          height: isHovering ? 48 : 8,
-          marginLeft: isHovering ? -24 : -4,
-          marginTop: isHovering ? -24 : -4,
+          transition: 'opacity 0.3s ease, width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+          width: isHovering ? 24 : 10,
+          height: isHovering ? 24 : 10,
+          marginLeft: isHovering ? -12 : -5,
+          marginTop: isHovering ? -12 : -5,
           borderRadius: '50%',
-          backgroundColor: '#fafafa',
+          backgroundColor: 'rgb(var(--color-accent-soft))',
+          boxShadow: '0 0 24px rgb(var(--color-accent) / 0.3)',
         }}
       />
-      {/* Outer ring */}
       <div
         ref={cursorOuterRef}
-        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        className="fixed left-0 top-0 z-[9999] pointer-events-none"
         style={{
           opacity: isHidden || isHovering ? 0 : 0.3,
           transition: 'opacity 0.4s ease',
-          width: 32,
-          height: 32,
-          marginLeft: -16,
-          marginTop: -16,
+          width: 34,
+          height: 34,
+          marginLeft: -17,
+          marginTop: -17,
           borderRadius: '50%',
-          border: '1px solid rgba(250, 250, 250, 0.4)',
+          border: '1px solid rgb(var(--color-accent-soft) / 0.35)',
         }}
       />
     </>

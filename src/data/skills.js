@@ -1,38 +1,38 @@
 export const skills = [
   {
-    category: "Servidor",
+    category: "Backend y datos",
     items: [
-      { name: "Spring Boot", level: "Intermedio" },
-      { name: "Laravel", level: "Avanzado" },
-      { name: "Node.js", level: "Intermedio" },
-      { name: "SQL", level: "Intermedio" }
+      { name: "Laravel", level: "Experiencia profesional" },
+      { name: "Spring Boot", level: "Trabajo real en proyecto" },
+      { name: "PostgreSQL / MySQL", level: "Modelado y consultas" },
+      { name: "APIs REST", level: "Diseño e integración" }
     ]
   },
   {
-    category: "Interfaz",
+    category: "Frontend",
     items: [
-      { name: "React", level: "Avanzado" },
-      { name: "JavaScript (ES6+)", level: "Avanzado" },
-      { name: "Tailwind CSS", level: "Avanzado" },
-      { name: "HTML/CSS", level: "Avanzado" }
+      { name: "React", level: "Stack principal" },
+      { name: "JavaScript (ES6+)", level: "Uso diario" },
+      { name: "Tailwind CSS", level: "Trabajo frecuente" },
+      { name: "HTML / CSS", level: "Base fuerte de interfaz" }
     ]
   },
   {
-    category: "IA y automatización",
+    category: "Infraestructura y automatización",
     items: [
-      { name: "Flujos multiagente", level: "Avanzado" },
-      { name: "Integración de LLM", level: "Avanzado" },
-      { name: "Desarrollo asistido por IA", level: "Experto" },
-      { name: "Patrones de automatización", level: "Avanzado" }
+      { name: "Docker", level: "Uso aplicado" },
+      { name: "Automatización asistida por IA", level: "Uso habitual" },
+      { name: "Flujos de desarrollo con IA", level: "Muy frecuente" },
+      { name: "Integración de herramientas", level: "Enfoque práctico" }
     ]
   },
   {
-    category: "Habilidades blandas",
+    category: "Forma de trabajo",
     items: [
-      { name: "Trato al cliente", level: "Excelente" },
+      { name: "Trabajo en equipo", level: "Colaboración directa" },
       { name: "Inglés", level: "B2 alto" },
-      { name: "Aprendizaje rápido", level: "Alto" },
-      { name: "Trabajo en equipo", level: "Alto" }
+      { name: "Aprendizaje rápido", level: "Alta autonomía" },
+      { name: "Comunicación", level: "Clara y orientada a ejecución" }
     ]
   }
 ];

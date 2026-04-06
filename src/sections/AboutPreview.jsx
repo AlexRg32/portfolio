@@ -1,47 +1,49 @@
-import { motion } from 'framer-motion';
-import { fadeUp, viewportConfig } from '../utils/animations';
-import TextReveal from '../components/ui/TextReveal';
-import MagneticButton from '../components/ui/MagneticButton';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import MagneticButton from '../components/ui/MagneticButton';
+import { fadeUp, viewportConfig } from '../utils/animations';
 
 export default function AboutPreview() {
   return (
-    <section className="py-24 md:py-48 relative z-10 bg-bg">
-      <div className="container-wide flex flex-col items-center justify-center text-center">
-        <motion.p 
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-          className="text-text-dim text-xs font-body uppercase tracking-[0.3em] mb-12"
-        >
-          El Enfoque
-        </motion.p>
-        
-        {/* Potent statement revealed word by word */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <TextReveal 
-            as="h2" 
-            className="text-display-md md:text-[clamp(2.5rem,5vw,5rem)] font-display text-text leading-[1.1] tracking-tight"
-          >
-            Nada de plantillas genéricas: construyo soluciones a medida para empresas que quieren destacar con una web clara, cuidada y útil.
-          </TextReveal>
-        </div>
+    <section className="relative z-10 bg-bg py-24 md:py-32">
+      <div className="container-wide">
+        <div className="grid gap-8 border-t border-border/45 pt-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+          <div>
+            <motion.p
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="eyebrow"
+            >
+              Cómo trabajo
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="mt-5 max-w-3xl font-display text-display-md text-text"
+            >
+              Me siento cómodo en equipos donde hay que combinar criterio de interfaz, estructura técnica y una ejecución constante sin perder claridad.
+            </motion.h2>
+          </div>
 
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
-        >
-          <MagneticButton 
-            as={Link} 
-            to="/about"
-            className="inline-block px-8 py-4 bg-text text-bg font-body text-sm uppercase tracking-[0.2em] hover:bg-transparent hover:text-text hover:border-text border-transparent border transition-all duration-500 ease-out-expo"
+          <motion.div
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="flex flex-col items-start gap-5 lg:items-end"
           >
-            Conocer más
-          </MagneticButton>
-        </motion.div>
+            <p className="max-w-md text-base leading-8 text-text-muted lg:text-right">
+              Me interesa que el producto se vea bien, pero sobre todo que se entienda, funcione y se pueda mantener con el tiempo.
+            </p>
+            <MagneticButton as={Link} to="/about" className="button-primary">
+              Ver experiencia
+            </MagneticButton>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
