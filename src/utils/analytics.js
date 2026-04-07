@@ -88,6 +88,7 @@ function getPageType(pathname) {
   if (pathname === '/work') return 'work-list';
   if (pathname.startsWith('/work/')) return 'project-detail';
   if (pathname === '/about') return 'about';
+  if (pathname === '/hire') return 'hire';
   if (pathname === '/contact') return 'contact';
   return 'other';
 }

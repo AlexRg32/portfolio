@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MagneticButton from '../components/ui/MagneticButton';
 import { SOCIAL_LINKS } from '../utils/constants';
@@ -55,6 +56,14 @@ export default function CTASection() {
               onClick={trackCtaEvent(ANALYTICS_EVENTS.emailClick, 'email')}
             >
               Escribir por email
+            </MagneticButton>
+            <MagneticButton
+              as={Link}
+              to="/hire"
+              className="button-secondary w-full sm:w-auto"
+              onClick={trackCtaEvent(ANALYTICS_EVENTS.contactClick, 'hire-page')}
+            >
+              Perfil rapido
             </MagneticButton>
             <MagneticButton
               as="a"

@@ -28,6 +28,17 @@ export default function HeroSection() {
 
       <div className="container-wide relative z-10 grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-20">
         <div className="max-w-[42rem]">
+          <div className="inline-flex flex-wrap items-center gap-3 rounded-full border border-border/45 bg-surface/18 px-4 py-2 text-sm text-text-muted">
+            <span className="inline-flex items-center gap-2 text-text">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              Disponible ahora
+            </span>
+            <span className="hidden text-text-dim sm:inline">Remoto / Alicante / Murcia</span>
+            <Link to="/hire" className="font-medium text-text underline decoration-border-light/70 underline-offset-4 hover:decoration-text">
+              Perfil rapido para recruiters
+            </Link>
+          </div>
+
           <h1 className="max-w-[12ch] font-display text-[clamp(3.2rem,11vw,7.4rem)] font-semibold leading-[0.92] tracking-[-0.055em] text-text sm:max-w-4xl">
             Full-stack con
             <br className="hidden md:block" /> foco en producto

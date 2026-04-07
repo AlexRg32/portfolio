@@ -99,6 +99,35 @@ export function getContactMeta() {
   });
 }
 
+export function getHireMeta() {
+  return createMeta({
+    title: 'Perfil para Recruiters | Alejandro Ruiz',
+    description:
+      'Resumen rápido para recruiters y hiring managers: encaje de Alejandro Ruiz en frontend, full-stack, SaaS, backoffice y producto digital.',
+    path: '/hire',
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'ProfilePage',
+      dateCreated: '2026-04-07',
+      dateModified: '2026-04-07',
+      mainEntity: {
+        '@type': 'Person',
+        name: profile.name,
+        jobTitle: profile.role,
+        description:
+          'Desarrollador full-stack con foco en producto, frontend claro, SaaS, APIs, backoffice y entrega mantenible.',
+        image: absoluteUrl(SITE.image),
+        url: absoluteUrl('/hire'),
+        knowsAbout: profile.focusAreas,
+        sameAs: [
+          profile.social.github,
+          profile.social.linkedin,
+        ],
+      },
+    },
+  });
+}
+
 export function getPrivacyMeta() {
   return createMeta({
     title: 'Privacidad y analítica | Alejandro Ruiz',
@@ -141,6 +170,7 @@ export function getPrerenderRoutes() {
     { path: '/', meta: getHomeMeta() },
     { path: '/work', meta: getWorkMeta() },
     { path: '/about', meta: getAboutMeta() },
+    { path: '/hire', meta: getHireMeta() },
     { path: '/contact', meta: getContactMeta() },
     { path: '/privacy', meta: getPrivacyMeta() },
     { path: '/404', meta: getNotFoundMeta() },
