@@ -15,7 +15,7 @@ export default function Hero() {
           DISPONIBLE PARA TRABAJAR
         </span>
         <h1 className="text-display mb-6 text-6xl tracking-tighter sm:text-8xl md:text-9xl font-bold bg-gradient-to-br from-white to-neutral-500 bg-clip-text text-transparent pb-4">
-          Alejandro.
+          Alejandro Ruiz.
         </h1>
         <h2 className="mb-10 text-xl md:text-3xl font-light tracking-tight text-text-dim max-w-2xl mx-auto">
           Ingeniero de Software Full Stack.
