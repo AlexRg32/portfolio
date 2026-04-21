@@ -1,9 +1,9 @@
 // Navigation links
 export const NAV_LINKS = [
-  { name: 'Inicio', path: '/' },
-  { name: 'Trabajo', path: '/work' },
-  { name: 'Sobre Mí', path: '/about' },
-  { name: 'Contacto', path: '/contact' },
+  { name: 'Inicio', path: '/#home' },
+  { name: 'Proyectos', path: '/#proyectos' },
+  { name: 'Trayectoria', path: '/#trayectoria' },
+  { name: 'Contacto', path: '/#contacto' },
 ];
 
 // Social links

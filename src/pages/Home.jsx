@@ -1,23 +1,38 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import PageTransition from '../components/layout/PageTransition';
 import RouteMeta from '../components/seo/RouteMeta';
-import HeroSection from '../sections/HeroSection';
-import ServicesSection from '../sections/ServicesSection';
-import FeaturedWork from '../sections/FeaturedWork';
-import AboutPreview from '../sections/AboutPreview';
-import MarqueeSection from '../sections/MarqueeSection';
-import CTASection from '../sections/CTASection';
 import { getHomeMeta } from '../utils/routeMeta';
 
+import Hero from '../sections/Hero';
+import FastFacts from '../sections/FastFacts';
+import SelectedWork from '../sections/SelectedWork';
+import Experience from '../sections/Experience';
+import FooterContact from '../sections/FooterContact';
+
 export default function Home() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [hash]);
+
   return (
     <PageTransition>
       <RouteMeta meta={getHomeMeta()} />
-      <HeroSection />
-      <ServicesSection />
-      <FeaturedWork />
-      <AboutPreview />
-      <MarqueeSection />
-      <CTASection />
+      <main className="flex min-h-screen flex-col overflow-hidden bg-black text-white">
+        <Hero />
+        <FastFacts />
+        <SelectedWork />
+        <Experience />
+        <FooterContact />
+      </main>
     </PageTransition>
   );
 }
