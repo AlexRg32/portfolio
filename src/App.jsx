@@ -1,26 +1,27 @@
-import { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AnalyticsProvider from './components/analytics/AnalyticsProvider';
-import Layout from './components/layout/Layout';
-import CustomCursor from './components/layout/CustomCursor';
-import GrainOverlay from './components/ui/GrainOverlay';
-
-const Home = lazy(() => import('./pages/Home'));
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import SiteLayout from './components/SiteLayout';
+import Home from './pages/Home';
+import CaseStudy from './pages/CaseStudy';
+import Privacy from './pages/Privacy';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
     <BrowserRouter>
-      <AnalyticsProvider>
-        <CustomCursor />
-        <GrainOverlay />
-        <Suspense fallback={<div className="min-h-screen bg-black" aria-hidden="true" />}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/*" element={<Home />} />
-            </Route>
-          </Routes>
-        </Suspense>
-      </AnalyticsProvider>
+      <Routes>
+        <Route element={<SiteLayout />}>
+          <Route index element={<Home lang="es" />} />
+          <Route path="trabajo/:slug" element={<CaseStudy lang="es" />} />
+          <Route path="privacidad" element={<Privacy lang="es" />} />
+
+          <Route path="en" element={<Home lang="en" />} />
+          <Route path="en/work/:slug" element={<CaseStudy lang="en" />} />
+          <Route path="en/privacy" element={<Privacy lang="en" />} />
+
+          <Route path="work/:slug" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }
