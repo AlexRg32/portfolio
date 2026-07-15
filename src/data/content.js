@@ -89,9 +89,9 @@ export const content = {
     hero: { eyebrow: 'Frontend developer — Alicante', title: ['Diseño.', 'Código.', 'Producto.'], intro: 'Creo interfaces digitales claras y rápidas.', primary: 'Proyectos', secondary: 'Contacto', imageAlt: 'Alejandro Ruiz junto a un lago', caption: 'Alejandro Ruiz' },
     work: { eyebrow: 'Proyectos', title: 'Trabajo seleccionado.', intro: 'Diseño y desarrollo, de inicio a fin.', readCase: 'Ver proyecto', open: 'Abrir' },
     experience: { eyebrow: 'Experiencia', title: 'Ahora y antes.', skillsLabel: 'Tecnologías y capacidades', items: [
-      { company: 'Polo Club', role: 'IT Support & Development', period: '2026 — AHORA', description: 'E-commerce y herramientas internas.' },
+      { company: 'Polo Club', logo: '/assets/rigby-go.png', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — AHORA', description: 'E-commerce y herramientas internas.' },
       { company: 'Infoexpo', role: 'Full-Stack Developer', period: '2025 — 2026', description: 'Producto SaaS B2B.' },
-      { company: 'Grup Mediapro', role: 'Field Operator', period: '2023 — AHORA', description: 'Operativa audiovisual.' },
+      { company: 'Grup Mediapro', logo: '/assets/grup-mediapro.svg', logoClass: 'experience-logo--mediapro', role: 'Field Operator', period: '2023 — AHORA', description: 'Operativa audiovisual.' },
     ]},
     about: { eyebrow: 'Perfil', title: 'Simple, útil, bien hecho.', body: 'Soy Alejandro. Frontend developer con experiencia en producto, e-commerce y desarrollo full-stack.', meta: 'React · JavaScript · Laravel · Odoo · Shopify' },
     contact: { eyebrow: 'Contacto', title: '¿Hablamos?', body: 'Disponible para proyectos y equipos de producto.' },
@@ -102,9 +102,9 @@ export const content = {
     hero: { eyebrow: 'Frontend developer — Alicante', title: ['Design.', 'Code.', 'Product.'], intro: 'I create clear, fast digital interfaces.', primary: 'Projects', secondary: 'Contact', imageAlt: 'Alejandro Ruiz by a lake', caption: 'Alejandro Ruiz' },
     work: { eyebrow: 'Projects', title: 'Selected work.', intro: 'Design and development, end to end.', readCase: 'View project', open: 'Open' },
     experience: { eyebrow: 'Experience', title: 'Now and before.', skillsLabel: 'Technologies and capabilities', items: [
-      { company: 'Polo Club', role: 'IT Support & Development', period: '2026 — NOW', description: 'E-commerce and internal tools.' },
+      { company: 'Polo Club', logo: '/assets/rigby-go.png', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — NOW', description: 'E-commerce and internal tools.' },
       { company: 'Infoexpo', role: 'Full-Stack Developer', period: '2025 — 2026', description: 'B2B SaaS product.' },
-      { company: 'Grup Mediapro', role: 'Field Operator', period: '2023 — NOW', description: 'Broadcast operations.' },
+      { company: 'Grup Mediapro', logo: '/assets/grup-mediapro.svg', logoClass: 'experience-logo--mediapro', role: 'Field Operator', period: '2023 — NOW', description: 'Broadcast operations.' },
     ]},
     about: { eyebrow: 'Profile', title: 'Simple, useful, well made.', body: 'I’m Alejandro. Frontend developer with experience in product, e-commerce and full-stack development.', meta: 'React · JavaScript · Laravel · Odoo · Shopify' },
     contact: { eyebrow: 'Contact', title: 'Let’s talk.', body: 'Available for projects and product teams.' },
