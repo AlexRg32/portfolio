@@ -31,6 +31,8 @@ function renderHtml(template, metaInput) {
   const meta = resolveMetaUrls(metaInput);
   let html = template;
 
+  html = html.replace('<html lang="es">', `<html lang="${meta.lang ?? 'es'}">`);
+
   html = replaceTag(html, /<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(meta.title)}</title>`);
   html = replaceTag(
     html,

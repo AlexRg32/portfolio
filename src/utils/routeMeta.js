@@ -1,190 +1,80 @@
-import { projects } from '../data/projects.js';
-import { profile } from '../data/profile.js';
+import { projects } from '../data/content.js';
 
 export const SITE = {
   name: 'Alejandro Ruiz',
-  title: 'Alejandro Ruiz | Full-Stack Developer',
-  description:
-    'Portfolio profesional de Alejandro Ruiz, full-stack developer con experiencia en React, Laravel, Spring Boot, PHP, PostgreSQL y producto digital.',
   url: 'https://alexrg.es/',
-  image: profile.photo ?? '/assets/profile.jpg',
+  image: '/assets/alejandro-portrait.jpg',
 };
 
-function withLeadingSlash(path) {
-  if (!path) return '/';
-  return path.startsWith('/') ? path : `/${path}`;
+const descriptions = {
+  es: 'Portfolio de Alejandro Ruiz, frontend developer en Alicante.',
+  en: 'Alejandro Ruiz is a frontend developer based in Alicante.',
+};
+
+function withLeadingSlash(value) {
+  if (!value) return '/';
+  return value.startsWith('/') ? value : `/${value}`;
 }
 
-function absoluteUrl(path) {
-  return new URL(withLeadingSlash(path), SITE.url).toString();
+function absoluteUrl(value) {
+  return new URL(withLeadingSlash(value), SITE.url).toString();
 }
 
-export function createMeta({
-  title,
-  description,
-  path = '/',
-  image = SITE.image,
-  type = 'website',
-  schema = null,
-  noIndex = false,
-}) {
+function createMeta({ title, description, path = '/', image = SITE.image, type = 'website', schema = null, noIndex = false, lang = 'es' }) {
+  return { title, description, path: withLeadingSlash(path), image, type, schema, noIndex, lang };
+}
+
+function personSchema(lang) {
   return {
-    title,
-    description,
-    path: withLeadingSlash(path),
-    image,
-    type,
-    schema,
-    noIndex,
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Alejandro Ruiz Gasch',
+    jobTitle: 'Frontend Developer',
+    url: SITE.url,
+    description: descriptions[lang],
+    sameAs: ['https://github.com/AlexRg32', 'https://www.linkedin.com/in/alejandro-ruiz-gasch-0230542b3/'],
   };
 }
 
-export function getHomeMeta() {
+function projectMeta(project, lang) {
+  const prefix = lang === 'es' ? '/trabajo/' : '/en/work/';
   return createMeta({
-    title: SITE.title,
-    description: SITE.description,
-    path: '/',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      name: 'Alejandro Ruiz Gasch',
-      jobTitle: profile.role,
-      url: SITE.url,
-      image: absoluteUrl(SITE.image),
-      description: profile.recruiterPitch,
-      knowsAbout: profile.focusAreas,
-      sameAs: [
-        'https://github.com/AlexRg32',
-        'https://www.linkedin.com/in/alejandro-ruiz-gasch-0230542b3/',
-      ],
-    },
-  });
-}
-
-export function getWorkMeta() {
-  return createMeta({
-    title: 'Trabajo seleccionado | Alejandro Ruiz',
-    description:
-      'Selección de proyectos de producto, SaaS y frontend que muestran experiencia de Alejandro Ruiz en interfaz, arquitectura web y delivery.',
-    path: '/work',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'CollectionPage',
-      name: 'Trabajo seleccionado',
-      url: absoluteUrl('/work'),
-      hasPart: projects.map((project) => ({
-        '@type': 'CreativeWork',
-        name: project.title,
-        url: absoluteUrl(`/work/${project.id}`),
-      })),
-    },
-  });
-}
-
-export function getAboutMeta() {
-  return createMeta({
-    title: 'Sobre mí | Alejandro Ruiz',
-    description:
-      'Perfil profesional de Alejandro Ruiz, full-stack developer orientado a producto, frontend claro y sistemas mantenibles.',
-    path: '/about',
-  });
-}
-
-export function getContactMeta() {
-  return createMeta({
-    title: 'Contacto | Alejandro Ruiz',
-    description:
-      'Contacta con Alejandro Ruiz para oportunidades profesionales como full-stack developer en equipos de producto.',
-    path: '/contact',
-  });
-}
-
-export function getHireMeta() {
-  return createMeta({
-    title: 'Perfil para Recruiters | Alejandro Ruiz',
-    description:
-      'Resumen rápido para recruiters y hiring managers: encaje de Alejandro Ruiz en frontend, full-stack, SaaS, backoffice y producto digital.',
-    path: '/hire',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'ProfilePage',
-      dateCreated: '2026-04-07',
-      dateModified: '2026-04-07',
-      mainEntity: {
-        '@type': 'Person',
-        name: profile.name,
-        jobTitle: profile.role,
-        description:
-          'Desarrollador full-stack con foco en producto, frontend claro, SaaS, APIs, backoffice y entrega mantenible.',
-        image: absoluteUrl(SITE.image),
-        url: absoluteUrl('/hire'),
-        knowsAbout: profile.focusAreas,
-        sameAs: [
-          profile.social.github,
-          profile.social.linkedin,
-        ],
-      },
-    },
-  });
-}
-
-export function getPrivacyMeta() {
-  return createMeta({
-    title: 'Privacidad y analítica | Alejandro Ruiz',
-    description:
-      'Información clara sobre cómo Alejandro Ruiz mide tráfico y comportamiento en este portfolio usando Plausible y, si se acepta, Microsoft Clarity.',
-    path: '/privacy',
-  });
-}
-
-export function getNotFoundMeta() {
-  return createMeta({
-    title: 'Página no encontrada | Alejandro Ruiz',
-    description:
-      'La página que buscas no existe o se ha movido. Puedes volver al inicio, revisar el trabajo seleccionado o contactar conmigo.',
-    path: '/404',
-    noIndex: true,
-  });
-}
-
-export function getProjectMeta(project) {
-  return createMeta({
-    title: `${project.title} | Alejandro Ruiz`,
-    description: project.caseStudy.summary,
-    path: `/work/${project.id}`,
+    title: `${project.title} — Alejandro Ruiz`,
+    description: project.summary[lang],
+    path: `${prefix}${project.slug}`,
     image: project.image,
     type: 'article',
+    lang,
     schema: {
       '@context': 'https://schema.org',
       '@type': 'CreativeWork',
       name: project.title,
-      description: project.caseStudy.summary,
+      description: project.summary[lang],
       image: absoluteUrl(project.image),
-      url: absoluteUrl(`/work/${project.id}`),
+      url: absoluteUrl(`${prefix}${project.slug}`),
+      creator: { '@type': 'Person', name: 'Alejandro Ruiz Gasch' },
     },
   });
 }
 
 export function getPrerenderRoutes() {
+  const base = [
+    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.es, path: '/', schema: personSchema('es') }),
+    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.en, path: '/en', lang: 'en', schema: personSchema('en') }),
+    createMeta({ title: 'Privacidad — Alejandro Ruiz', description: 'Información sobre privacidad y tratamiento de datos en alexrg.es.', path: '/privacidad' }),
+    createMeta({ title: 'Privacy — Alejandro Ruiz', description: 'Privacy and data processing information for alexrg.es.', path: '/en/privacy', lang: 'en' }),
+    createMeta({ title: '404 — Alejandro Ruiz', description: 'Página no encontrada.', path: '/404', noIndex: true }),
+  ];
+
   return [
-    { path: '/', meta: getHomeMeta() },
-    { path: '/work', meta: getWorkMeta() },
-    { path: '/about', meta: getAboutMeta() },
-    { path: '/hire', meta: getHireMeta() },
-    { path: '/contact', meta: getContactMeta() },
-    { path: '/privacy', meta: getPrivacyMeta() },
-    { path: '/404', meta: getNotFoundMeta() },
-    ...projects.map((project) => ({
-      path: `/work/${project.id}`,
-      meta: getProjectMeta(project),
+    ...base.map((meta) => ({ path: meta.path, meta })),
+    ...projects.flatMap((project) => ['es', 'en'].map((lang) => {
+      const meta = projectMeta(project, lang);
+      return { path: meta.path, meta };
     })),
   ];
 }
 
 export function resolveMetaUrls(meta) {
-  return {
-    ...meta,
-    canonicalUrl: absoluteUrl(meta.path),
-    imageUrl: absoluteUrl(meta.image),
-  };
+  return { ...meta, canonicalUrl: absoluteUrl(meta.path), imageUrl: absoluteUrl(meta.image) };
 }
