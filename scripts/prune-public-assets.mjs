@@ -11,6 +11,8 @@ const keepAssets = new Set([
   'monica-gallardo-portfolio.jpg',
   'alejandro-portrait.jpg',
   'CV-AlejandroRuiz.pdf',
+  'rigby-go.png',
+  'grup-mediapro.svg',
 ]);
 
 const keepFonts = new Set([

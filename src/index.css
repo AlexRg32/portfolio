@@ -95,7 +95,11 @@ img { display: block; max-width: 100%; }
 .experience .kicker, .experience .mono-label { color: #8e8b84; }
 .timeline { border-top: 1px solid #42413d; }
 .timeline__item { display: grid; grid-template-columns: .9fr 1.1fr; gap: 32px; padding: 31px 0 36px; border-bottom: 1px solid #42413d; }
-.timeline h3 { margin: 10px 0 0; font-size: 1.12rem; font-weight: 500; }
+.timeline__company { min-height: 64px; display: flex; align-items: center; gap: 17px; margin-top: 12px; }
+.timeline h3 { margin: 0; font-size: 1.12rem; font-weight: 500; }
+.experience-logo { display: block; flex: 0 0 auto; object-fit: contain; filter: none; }
+.experience-logo--rigby { width: 28px; height: 62px; }
+.experience-logo--mediapro { width: 94px; height: 54px; }
 .timeline h4 { margin: 0 0 9px; font-size: .82rem; font-weight: 500; }
 .timeline__detail p { margin: 0; color: #929089; font-size: .78rem; }
 
@@ -188,6 +192,9 @@ img { display: block; max-width: 100%; }
   .project-row__summary { margin-top: 22px; }
   .project-row__visual { padding: 12px; }
   .timeline__item { grid-template-columns: 1fr; gap: 22px; }
+  .timeline__company { min-height: 58px; }
+  .experience-logo--rigby { width: 25px; height: 56px; }
+  .experience-logo--mediapro { width: 86px; height: 49px; }
   .about { grid-template-columns: 1fr; }
   .about h2 { font-size: clamp(3.8rem, 18vw, 5.8rem); }
   .about__copy { margin-top: 5px; }

@@ -49,7 +49,10 @@ export default function Home({ lang }) {
                 <Reveal as="article" className="timeline__item" key={item.company}>
                   <div>
                     <p className="mono-label">{item.period}</p>
-                    <h3>{item.company}</h3>
+                    <div className="timeline__company">
+                      {item.logo && <img className={`experience-logo ${item.logoClass}`} src={item.logo} alt="" loading="lazy" />}
+                      <h3>{item.company}</h3>
+                    </div>
                   </div>
                   <div className="timeline__detail">
                     <h4>{item.role}</h4>
