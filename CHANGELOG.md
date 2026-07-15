@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.0.1] - 2026-07-15
+
+### Added
+
+- Added the original Rigby and Grup Mediapro logos to the experience timeline.
+
+### Changed
+
+- Balanced logo sizing and alignment across desktop and mobile layouts.
+
 ## [0.1.0.0] - 2026-07-15
 
 ### Added
