@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.0.2] - 2026-07-16
+
+### Changed
+
+- Reframed the personal hero photo with a wider source crop and a larger editorial layout.
+- Reduced horizontal overflow across the page and refined the mobile portrait sizing.
+
 ## [0.1.0.1] - 2026-07-15
 
 ### Added
