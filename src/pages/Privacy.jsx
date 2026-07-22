@@ -23,6 +23,14 @@ const copy = {
   },
 };
 
+const email = 'alexrg32@icloud.com';
+
+function renderBody(body) {
+  const [before, after] = body.split(email);
+  if (after === undefined) return body;
+  return <>{before}<a className="legal__email" href={`mailto:${email}`}>{email}</a>{after}</>;
+}
+
 export default function Privacy({ lang = 'es' }) {
   const text = copy[lang];
   return (
@@ -34,7 +42,7 @@ export default function Privacy({ lang = 'es' }) {
         <p className="legal__updated">{text.updated}</p>
         <p className="legal__intro">{text.intro}</p>
         <div className="legal__sections">
-          {text.sections.map(([title, body]) => <section key={title}><span aria-hidden="true" /><div><h2>{title}</h2><p>{body}</p></div></section>)}
+          {text.sections.map(([title, body]) => <section key={title}><span aria-hidden="true" /><div><h2>{title}</h2><p>{renderBody(body)}</p></div></section>)}
         </div>
       </main>
     </>
