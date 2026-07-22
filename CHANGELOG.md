@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.1.0.3] - 2026-07-22
+
+### Fixed
+
+- Reduced the contact section height and resized “¿Hablamos?” so it stays fully visible on mobile.
+
 ## [0.1.0.2] - 2026-07-16
 
 ### Changed
