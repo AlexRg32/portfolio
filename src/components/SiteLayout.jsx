@@ -87,7 +87,7 @@ export default function SiteLayout() {
       </div>
       <footer className="site-footer" inert={open} aria-hidden={open ? 'true' : undefined}>
         <div className="shell site-footer__top">
-          <p>Alejandro Ruiz<br /><span>Frontend developer</span></p>
+          <p aria-label="Alejandro Ruiz — Frontend developer">Alejandro Ruiz<br /><span>Frontend developer</span></p>
           <div className="site-footer__links">
             <a href="mailto:alexrg32@icloud.com">Email ↗</a>
             <a href="https://www.linkedin.com/in/alejandro-ruiz-gasch-0230542b3/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
