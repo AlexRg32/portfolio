@@ -79,7 +79,8 @@ img { display: block; max-width: 100%; }
 .work-intro h2 { margin: -9px 0 0; font-size: clamp(3.2rem, 6vw, 6.3rem); font-weight: 500; line-height: .88; letter-spacing: -.075em; }
 .work-intro > p:last-child { max-width: 240px; margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.5; }
 .project-list { border-top: 1px solid var(--line); }
-.project-row { display: grid; grid-template-columns: minmax(240px, .38fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 110px); padding-block: clamp(68px, 9vw, 130px); border-bottom: 1px solid var(--line); }
+.project-row { border-bottom: 1px solid var(--line); }
+.project-row__link { display: grid; grid-template-columns: minmax(240px, .38fr) minmax(0, 1fr); gap: clamp(40px, 7vw, 110px); padding-block: clamp(68px, 9vw, 130px); }
 .project-row__meta { position: sticky; top: 110px; align-self: start; }
 .project-row__index { display: flex; justify-content: space-between; margin: 0 0 clamp(55px, 8vw, 105px); color: var(--muted); font: 400 .58rem 'IBM Plex Mono', monospace; }
 .project-row h3 { max-width: 380px; margin: 0; font-size: clamp(2.4rem, 4.7vw, 5rem); font-weight: 500; line-height: .88; letter-spacing: -.075em; }
@@ -89,7 +90,8 @@ img { display: block; max-width: 100%; }
 .project-row:nth-child(2) .project-row__visual { background: #d6d2c9; }
 .project-row:nth-child(3) .project-row__visual { background: #20211f; }
 .project-row__visual img { width: 100%; height: auto; filter: grayscale(.82) saturate(.35) contrast(.94); box-shadow: 0 18px 55px rgb(24 24 22 / .12); transition: transform .7s cubic-bezier(.2,.7,.2,1), filter .4s ease; }
-.project-row__visual:hover img { transform: scale(1.012); filter: grayscale(.25) saturate(.8) contrast(.98); }
+.project-row__link:hover .project-row__visual img,
+.project-row__link:focus-visible .project-row__visual img { transform: scale(1.012); filter: grayscale(.25) saturate(.8) contrast(.98); }
 
 .experience { padding-block: clamp(95px, 12vw, 170px); color: var(--paper); background: var(--ink); }
 .experience__grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(60px, 9vw, 140px); }
@@ -192,7 +194,7 @@ img { display: block; max-width: 100%; }
   .hero__note { display: none; }
   .work-intro { display: block; }
   .work-intro h2 { margin: 25px 0; font-size: clamp(3.6rem, 17vw, 5.3rem); }
-  .project-row { grid-template-columns: 1fr; gap: 38px; padding-block: 70px; }
+  .project-row__link { grid-template-columns: 1fr; gap: 38px; padding-block: 70px; }
   .project-row__meta { position: static; }
   .project-row__index { margin-bottom: 45px; }
   .project-row h3 { font-size: clamp(3rem, 15vw, 5rem); }
