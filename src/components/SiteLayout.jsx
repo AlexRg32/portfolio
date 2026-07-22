@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { content } from '../data/content';
 
@@ -15,38 +15,69 @@ export default function SiteLayout() {
       ? location.pathname.replace('/trabajo/', '/en/work/')
       : location.pathname === '/privacidad' ? '/en/privacy' : '/en';
   const [open, setOpen] = useState(false);
-  const closeMenu = () => {
-    document.body.classList.remove('menu-open');
-    setOpen(false);
-  };
+  const headerRef = useRef(null);
+  const menuButtonRef = useRef(null);
+  const closeMenu = () => setOpen(false);
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', open);
-    return () => document.body.classList.remove('menu-open');
+    if (!open) return () => document.body.classList.remove('menu-open');
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setOpen(false);
+        requestAnimationFrame(() => menuButtonRef.current?.focus());
+        return;
+      }
+
+      if (event.key !== 'Tab') return;
+      const focusable = [...headerRef.current.querySelectorAll('a[href], button:not([disabled])')]
+        .filter((element) => element.getClientRects().length > 0);
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.classList.remove('menu-open');
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [open]);
 
   return (
     <>
       <a className="skip-link" href="#main">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
-      <header className="site-header">
+      <header ref={headerRef} className={`site-header ${open ? 'is-menu-open' : ''}`}>
         <div className="shell site-header__inner">
-          <Link className="wordmark" to={home} aria-label="Alejandro Ruiz — Home">
+          <Link className="wordmark" to={home} aria-label="Alejandro Ruiz — Home" onClick={closeMenu}>
             <span>Alejandro Ruiz</span>
           </Link>
           <nav id="site-navigation" className={`site-nav ${open ? 'is-open' : ''}`} aria-label={lang === 'es' ? 'Navegación principal' : 'Main navigation'}>
             <a href={`${home}#work`} onClick={closeMenu}>{copy.work}</a>
             <a href={`${home}#experience`} onClick={closeMenu}>{copy.experience}</a>
             <a href={`${home}#about`} onClick={closeMenu}>{copy.about}</a>
-            <a className="site-nav__contact" href="mailto:alexrg32@icloud.com">{copy.contact}<span aria-hidden="true">↗</span></a>
-            <Link className="site-nav__language" to={otherLanguage} lang={lang === 'es' ? 'en' : 'es'}>{lang === 'es' ? 'EN' : 'ES'}</Link>
+            <a className="site-nav__contact" href="mailto:alexrg32@icloud.com" onClick={closeMenu}>{copy.contact}<span aria-hidden="true">↗</span></a>
+            <Link className="site-nav__language" to={otherLanguage} lang={lang === 'es' ? 'en' : 'es'} onClick={closeMenu}>{lang === 'es' ? 'EN' : 'ES'}</Link>
           </nav>
-          <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="site-navigation" aria-label={open ? copy.close : copy.menu}>
+          <button ref={menuButtonRef} className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="site-navigation" aria-label={open ? copy.close : copy.menu}>
             <span /><span />
           </button>
         </div>
       </header>
-      <Outlet />
-      <footer className="site-footer">
+      <div className="site-content" inert={open} aria-hidden={open ? 'true' : undefined}>
+        <Outlet />
+      </div>
+      <footer className="site-footer" inert={open} aria-hidden={open ? 'true' : undefined}>
         <div className="shell site-footer__top">
           <p>Alejandro Ruiz<br /><span>Frontend developer</span></p>
           <div className="site-footer__links">

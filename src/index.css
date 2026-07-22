@@ -46,7 +46,7 @@ img { display: block; max-width: 100%; }
 
 .site-header { position: absolute; z-index: 100; inset: 0 0 auto; height: var(--header); }
 .site-header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
-.wordmark { font-size: .82rem; font-weight: 650; letter-spacing: -.02em; }
+.wordmark { position: relative; z-index: 102; font-size: .82rem; font-weight: 650; letter-spacing: -.02em; }
 .site-nav { display: flex; align-items: center; gap: clamp(20px, 3vw, 44px); font-size: .72rem; }
 .site-nav a { transition: opacity .2s ease; }
 .site-nav a:hover { opacity: .5; }
@@ -163,12 +163,16 @@ img { display: block; max-width: 100%; }
 @media (max-width: 900px) {
   :root { --header: 74px; }
   .menu-button { position: relative; z-index: 102; display: block; }
+  .site-header.is-menu-open .site-header__inner { border-bottom-color: #42413d; }
+  .site-header.is-menu-open .wordmark,
+  .site-header.is-menu-open .menu-button { color: var(--paper); }
   .menu-button[aria-expanded='true'] span:first-child { transform: translateY(3px) rotate(45deg); }
   .menu-button[aria-expanded='true'] span:last-child { transform: translateY(-3px) rotate(-45deg); }
-  .site-nav { position: fixed; z-index: 101; inset: 0; padding: 105px 28px 40px; flex-direction: column; align-items: stretch; justify-content: center; gap: 0; color: var(--paper); background: var(--ink); visibility: hidden; opacity: 0; }
-  .site-nav.is-open { visibility: visible; opacity: 1; }
+  .site-nav { position: fixed; z-index: 101; inset: 0; padding: 105px 28px 40px; flex-direction: column; align-items: stretch; justify-content: center; gap: 0; color: var(--paper); background: var(--ink); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+  .site-nav.is-open { visibility: visible; opacity: 1; pointer-events: auto; }
   .site-nav > a { padding: 14px 0; border-bottom: 1px solid #42413d; font-size: clamp(1.7rem, 7vw, 3rem); }
   .site-nav__language { position: absolute; top: 28px; left: 28px; border: 0; font-size: .7rem !important; }
+  .site-nav.is-open .site-nav__language { color: #b9b6ae; }
   .hero { grid-template-columns: 1fr 1fr; gap: 35px; }
   .hero h1 { font-size: clamp(3.4rem, 8.8vw, 5.6rem); }
   .work-intro { grid-template-columns: .4fr 1fr; }
