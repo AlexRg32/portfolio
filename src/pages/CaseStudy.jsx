@@ -5,8 +5,8 @@ import NotFound from './NotFound';
 import { projects } from '../data/content';
 
 const labels = {
-  es: { back: 'Trabajo seleccionado', challenge: 'El reto', response: 'La respuesta', decisions: 'Decisiones clave', live: 'Visitar proyecto', next: 'Siguiente caso', role: 'Responsabilidad', year: 'Año' },
-  en: { back: 'Selected work', challenge: 'The challenge', response: 'The response', decisions: 'Key decisions', live: 'Visit project', next: 'Next case', role: 'Responsibility', year: 'Year' },
+  es: { back: 'Trabajo seleccionado', challenge: 'El reto', response: 'La respuesta', decisions: 'Decisiones clave', scope: 'Alcance del proyecto', live: 'Visitar proyecto', next: 'Siguiente caso', role: 'Responsabilidad', year: 'Año' },
+  en: { back: 'Selected work', challenge: 'The challenge', response: 'The response', decisions: 'Key decisions', scope: 'Project scope', live: 'Visit project', next: 'Next case', role: 'Responsibility', year: 'Year' },
 };
 
 export default function CaseStudy({ lang }) {
@@ -28,7 +28,7 @@ export default function CaseStudy({ lang }) {
         path={`${casePrefix}${project.slug}`}
         image={project.image}
       />
-      <main id="main" className="case-page">
+      <main id="main" className={`case-page case-page--${project.slug}`}>
         <header className="case-hero shell">
           <Link className="case-hero__back text-link" to={`${home}#work`}><span aria-hidden="true">←</span>{copy.back}</Link>
           <div className="case-hero__heading">
@@ -45,6 +45,15 @@ export default function CaseStudy({ lang }) {
         <div className="case-image shell">
           <img src={project.image} alt={project.imageAlt[lang]} fetchPriority="high" />
         </div>
+
+        <section className="case-scope shell" aria-labelledby="case-scope-title">
+          <p className="kicker" id="case-scope-title">{copy.scope}</p>
+          <ol>
+            {project.deliverables[lang].map((deliverable, index) => (
+              <li key={deliverable}><span aria-hidden="true">0{index + 1}</span>{deliverable}</li>
+            ))}
+          </ol>
+        </section>
 
         <section className="case-narrative shell">
           <Reveal className="case-narrative__block">

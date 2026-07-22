@@ -9,6 +9,10 @@ export const projects = [
       en: 'A warm, direct website for hair, beauty and bridal services.',
     },
     services: { es: 'Dirección visual · UX/UI · Desarrollo', en: 'Art direction · UX/UI · Development' },
+    deliverables: {
+      es: ['Arquitectura de contenidos', 'Dirección visual', 'Reserva y contacto'],
+      en: ['Content architecture', 'Art direction', 'Booking and contact'],
+    },
     image: '/assets/monica-gallardo-portfolio.jpg',
     imageAlt: { es: 'Captura de la web de Mónica Gallardo Estilistas', en: 'Mónica Gallardo Estilistas website screenshot' },
     url: 'https://monica-gallardo-estilistas-crevillent.netlify.app',
@@ -36,6 +40,10 @@ export const projects = [
       en: 'A landing page that turns a broad offer into simple decisions.',
     },
     services: { es: 'Estrategia · UX/UI · Desarrollo', en: 'Strategy · UX/UI · Development' },
+    deliverables: {
+      es: ['Estrategia de conversión', 'Sistema de cursos', 'Experiencia mobile-first'],
+      en: ['Conversion strategy', 'Course system', 'Mobile-first experience'],
+    },
     image: '/assets/dclick-portfolio.jpg',
     imageAlt: { es: 'Captura de la web de Autoescuela D’Click', en: 'Autoescuela D’Click website screenshot' },
     url: 'https://autoescuela-dclick.netlify.app',
@@ -63,6 +71,10 @@ export const projects = [
       en: 'Scale, rhythm and clear navigation for a highly visual show catalogue.',
     },
     services: { es: 'Dirección visual · UX/UI · Desarrollo', en: 'Art direction · UX/UI · Development' },
+    deliverables: {
+      es: ['Arquitectura de catálogo', 'Sistema visual', 'Carga progresiva'],
+      en: ['Catalogue architecture', 'Visual system', 'Progressive loading'],
+    },
     image: '/assets/baluarte-portfolio.jpg',
     imageAlt: { es: 'Captura de la web de Espectáculos Baluarte', en: 'Espectáculos Baluarte website screenshot' },
     url: 'https://espectaculosbaluarte.netlify.app',
