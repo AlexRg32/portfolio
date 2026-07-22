@@ -1,6 +1,7 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Reveal from '../components/Reveal';
 import RouteMeta from '../components/RouteMeta';
+import NotFound from './NotFound';
 import { projects } from '../data/content';
 
 const labels = {
@@ -15,7 +16,7 @@ export default function CaseStudy({ lang }) {
   const home = lang === 'es' ? '/' : '/en';
   const casePrefix = lang === 'es' ? '/trabajo/' : '/en/work/';
 
-  if (!project) return <Navigate to={home} replace />;
+  if (!project) return <NotFound lang={lang} />;
   const nextProject = projects.find((item) => item.slug === project.next);
 
   return (

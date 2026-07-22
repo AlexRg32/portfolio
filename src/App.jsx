@@ -19,7 +19,8 @@ export default function App() {
           <Route path="en/privacy" element={<Privacy lang="en" />} />
 
           <Route path="work/:slug" element={<Navigate to="/" replace />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="en/*" element={<NotFound lang="en" />} />
+          <Route path="*" element={<NotFound lang="es" />} />
         </Route>
       </Routes>
     </BrowserRouter>
