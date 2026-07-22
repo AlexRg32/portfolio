@@ -18,6 +18,7 @@ export default function CaseStudy({ lang }) {
 
   if (!project) return <NotFound lang={lang} />;
   const nextProject = projects.find((item) => item.slug === project.next);
+  const imageBase = project.image.replace(/\.[^.]+$/, '');
 
   return (
     <>
@@ -43,7 +44,15 @@ export default function CaseStudy({ lang }) {
         </header>
 
         <div className="case-image shell">
-          <img src={project.image} alt={project.imageAlt[lang]} fetchPriority="high" />
+          <img
+            src={`${imageBase}-1200.webp`}
+            srcSet={`${imageBase}-640.webp 640w, ${imageBase}-1200.webp 1200w, ${imageBase}-1800.webp 1800w`}
+            sizes="(max-width: 650px) 100vw, 1280px"
+            width={project.imageWidth}
+            height={project.imageHeight}
+            alt={project.imageAlt[lang]}
+            fetchPriority="high"
+          />
         </div>
 
         <section className="case-scope shell" aria-labelledby="case-scope-title">

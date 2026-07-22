@@ -20,8 +20,8 @@ function absoluteUrl(value) {
   return new URL(withLeadingSlash(value), SITE.url).toString();
 }
 
-function createMeta({ title, description, path = '/', image = SITE.image, type = 'website', schema = null, noIndex = false, lang = 'es' }) {
-  return { title, description, path: withLeadingSlash(path), image, type, schema, noIndex, lang };
+function createMeta({ title, description, path = '/', image = SITE.image, type = 'website', schema = null, noIndex = false, lang = 'es', preloadImage = false }) {
+  return { title, description, path: withLeadingSlash(path), image, type, schema, noIndex, lang, preloadImage };
 }
 
 function personSchema(lang) {
@@ -45,6 +45,7 @@ function projectMeta(project, lang) {
     image: project.image,
     type: 'article',
     lang,
+    preloadImage: true,
     schema: {
       '@context': 'https://schema.org',
       '@type': 'CreativeWork',
@@ -59,8 +60,8 @@ function projectMeta(project, lang) {
 
 export function getPrerenderRoutes() {
   const base = [
-    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.es, path: '/', schema: personSchema('es') }),
-    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.en, path: '/en', lang: 'en', schema: personSchema('en') }),
+    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.es, path: '/', schema: personSchema('es'), preloadImage: true }),
+    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.en, path: '/en', lang: 'en', schema: personSchema('en'), preloadImage: true }),
     createMeta({ title: 'Privacidad — Alejandro Ruiz', description: 'Información sobre privacidad y tratamiento de datos en alexrg.es.', path: '/privacidad' }),
     createMeta({ title: 'Privacy — Alejandro Ruiz', description: 'Privacy and data processing information for alexrg.es.', path: '/en/privacy', lang: 'en' }),
     createMeta({ title: '404 — Alejandro Ruiz', description: 'Página no encontrada.', path: '/404', noIndex: true }),

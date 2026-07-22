@@ -27,11 +27,27 @@ function injectHeadContent(html, content) {
   return html.replace('</head>', `${content}\n  </head>`);
 }
 
+function renderImagePreload(image) {
+  const base = image.replace(/\.[^.]+$/, '');
+  const isPortrait = base.endsWith('alejandro-portrait');
+  const widths = isPortrait ? [480, 800, 1200] : [640, 1200, 1800];
+  const fallbackWidth = isPortrait ? 800 : 1200;
+  const sizes = isPortrait
+    ? '(max-width: 650px) calc(100vw - 32px), (max-width: 900px) 45vw, 610px'
+    : '(max-width: 650px) 100vw, 1280px';
+  const srcset = widths.map((width) => `${base}-${width}.webp ${width}w`).join(', ');
+  return `<link rel="preload" as="image" data-route-lcp="true" href="${base}-${fallbackWidth}.webp" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`;
+}
+
 function renderHtml(template, metaInput) {
   const meta = resolveMetaUrls(metaInput);
   let html = template;
 
   html = html.replace('<html lang="es">', `<html lang="${meta.lang ?? 'es'}">`);
+  html = html.replace(
+    /<link[^>]*data-route-lcp="true"[^>]*>/,
+    meta.preloadImage ? renderImagePreload(meta.image) : ''
+  );
 
   html = replaceTag(html, /<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(meta.title)}</title>`);
   html = replaceTag(

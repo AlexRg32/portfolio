@@ -10,22 +10,33 @@ export default function ProjectShowcase({ projects, copy, lang, casePrefix }) {
       </header>
 
       <div className="project-list">
-        {projects.map((project, index) => (
-          <article className="project-row" key={project.slug}>
-            <Link className="project-row__link" to={`${casePrefix}${project.slug}`}>
-              <div className="project-row__meta">
-                <p className="project-row__index"><span>0{index + 1}</span><span>{project.year}</span></p>
-                <h3>{project.title}</h3>
-                <p className="project-row__summary">{project.summary[lang]}</p>
-                <p className="project-row__category">{project.category[lang]}</p>
-                <span className="text-link">{copy.readCase}<span aria-hidden="true">↗</span></span>
-              </div>
-              <div className="project-row__visual">
-                <img src={project.image} alt={project.imageAlt[lang]} loading="lazy" />
-              </div>
-            </Link>
-          </article>
-        ))}
+        {projects.map((project, index) => {
+          const imageBase = project.image.replace(/\.[^.]+$/, '');
+          return (
+            <article className="project-row" key={project.slug}>
+              <Link className="project-row__link" to={`${casePrefix}${project.slug}`}>
+                <div className="project-row__meta">
+                  <p className="project-row__index"><span>0{index + 1}</span><span>{project.year}</span></p>
+                  <h3>{project.title}</h3>
+                  <p className="project-row__summary">{project.summary[lang]}</p>
+                  <p className="project-row__category">{project.category[lang]}</p>
+                  <span className="text-link">{copy.readCase}<span aria-hidden="true">↗</span></span>
+                </div>
+                <div className="project-row__visual">
+                  <img
+                    src={`${imageBase}-640.webp`}
+                    srcSet={`${imageBase}-640.webp 640w, ${imageBase}-1200.webp 1200w, ${imageBase}-1800.webp 1800w`}
+                    sizes="(max-width: 650px) calc(100vw - 56px), 760px"
+                    width={project.imageWidth}
+                    height={project.imageHeight}
+                    alt={project.imageAlt[lang]}
+                    loading="lazy"
+                  />
+                </div>
+              </Link>
+            </article>
+          );
+        })}
       </div>
     </section>
   );

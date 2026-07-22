@@ -32,7 +32,15 @@ export default function Home({ lang }) {
             </div>
           </div>
           <figure className="hero__portrait">
-            <img src="/assets/alejandro-portrait.jpg" alt={copy.hero.imageAlt} fetchPriority="high" />
+            <img
+              src="/assets/alejandro-portrait-800.webp"
+              srcSet="/assets/alejandro-portrait-480.webp 480w, /assets/alejandro-portrait-800.webp 800w, /assets/alejandro-portrait-1200.webp 1200w"
+              sizes="(max-width: 650px) calc(100vw - 32px), (max-width: 900px) 45vw, 610px"
+              width="2200"
+              height="1466"
+              alt={copy.hero.imageAlt}
+              fetchPriority="high"
+            />
             <figcaption><span>{copy.hero.caption}</span><span>2026</span></figcaption>
           </figure>
           <div className="hero__note" aria-hidden="true">

@@ -14,6 +14,8 @@ export const projects = [
       en: ['Content architecture', 'Art direction', 'Booking and contact'],
     },
     image: '/assets/monica-gallardo-portfolio.jpg',
+    imageWidth: 2400,
+    imageHeight: 1278,
     imageAlt: { es: 'Captura de la web de Mónica Gallardo Estilistas', en: 'Mónica Gallardo Estilistas website screenshot' },
     url: 'https://monica-gallardo-estilistas-crevillent.netlify.app',
     challenge: {
@@ -45,6 +47,8 @@ export const projects = [
       en: ['Conversion strategy', 'Course system', 'Mobile-first experience'],
     },
     image: '/assets/dclick-portfolio.jpg',
+    imageWidth: 1800,
+    imageHeight: 863,
     imageAlt: { es: 'Captura de la web de Autoescuela D’Click', en: 'Autoescuela D’Click website screenshot' },
     url: 'https://autoescuela-dclick.netlify.app',
     challenge: {
@@ -76,6 +80,8 @@ export const projects = [
       en: ['Catalogue architecture', 'Visual system', 'Progressive loading'],
     },
     image: '/assets/baluarte-portfolio.jpg',
+    imageWidth: 1800,
+    imageHeight: 935,
     imageAlt: { es: 'Captura de la web de Espectáculos Baluarte', en: 'Espectáculos Baluarte website screenshot' },
     url: 'https://espectaculosbaluarte.netlify.app',
     challenge: {
@@ -101,7 +107,7 @@ export const content = {
     hero: { eyebrow: 'Frontend developer · Alicante', availability: 'Disponible para nuevos proyectos', title: ['Frontend', 'con criterio', 'de producto.'], intro: 'Soy Alejandro Ruiz. Diseño y desarrollo experiencias web claras, rápidas y fáciles de usar, de la idea al despliegue.', primary: 'Ver proyectos', secondary: 'Escríbeme', cv: 'Ver CV', imageAlt: 'Alejandro Ruiz junto a un lago', caption: 'Alejandro Ruiz' },
     work: { eyebrow: 'Selección 01—03', title: 'Trabajo seleccionado.', intro: 'Tres proyectos reales. Decisiones de diseño y desarrollo explicadas sin humo.', readCase: 'Ver proyecto', open: 'Abrir' },
     experience: { eyebrow: 'Experiencia', title: 'Ahora y antes.', skillsLabel: 'Tecnologías y capacidades', items: [
-      { company: 'Polo Club', logo: '/assets/rigby-go.png', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — AHORA', description: 'E-commerce y herramientas internas.' },
+      { company: 'Polo Club', logo: '/assets/rigby-go-64.webp', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — AHORA', description: 'E-commerce y herramientas internas.' },
       { company: 'Infoexpo', role: 'Full-Stack Developer', period: '2025 — 2026', description: 'Producto SaaS B2B.' },
       { company: 'Grup Mediapro', logo: '/assets/grup-mediapro.svg', logoClass: 'experience-logo--mediapro', role: 'Field Operator', period: '2023 — AHORA', description: 'Operativa audiovisual.' },
     ]},
@@ -114,7 +120,7 @@ export const content = {
     hero: { eyebrow: 'Frontend developer · Alicante', availability: 'Available for new projects', title: ['Frontend', 'with a product', 'mindset.'], intro: 'I’m Alejandro Ruiz. I design and build clear, fast, easy-to-use web experiences, from first idea to deployment.', primary: 'View projects', secondary: 'Email me', cv: 'View résumé', imageAlt: 'Alejandro Ruiz by a lake', caption: 'Alejandro Ruiz' },
     work: { eyebrow: 'Selection 01—03', title: 'Selected work.', intro: 'Three real projects. Design and development decisions explained without the fluff.', readCase: 'View project', open: 'Open' },
     experience: { eyebrow: 'Experience', title: 'Now and before.', skillsLabel: 'Technologies and capabilities', items: [
-      { company: 'Polo Club', logo: '/assets/rigby-go.png', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — NOW', description: 'E-commerce and internal tools.' },
+      { company: 'Polo Club', logo: '/assets/rigby-go-64.webp', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — NOW', description: 'E-commerce and internal tools.' },
       { company: 'Infoexpo', role: 'Full-Stack Developer', period: '2025 — 2026', description: 'B2B SaaS product.' },
       { company: 'Grup Mediapro', logo: '/assets/grup-mediapro.svg', logoClass: 'experience-logo--mediapro', role: 'Field Operator', period: '2023 — NOW', description: 'Broadcast operations.' },
     ]},

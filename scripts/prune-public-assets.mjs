@@ -10,8 +10,20 @@ const keepAssets = new Set([
   'dclick-portfolio.jpg',
   'monica-gallardo-portfolio.jpg',
   'alejandro-portrait.jpg',
+  'alejandro-portrait-480.webp',
+  'alejandro-portrait-800.webp',
+  'alejandro-portrait-1200.webp',
+  'monica-gallardo-portfolio-640.webp',
+  'monica-gallardo-portfolio-1200.webp',
+  'monica-gallardo-portfolio-1800.webp',
+  'dclick-portfolio-640.webp',
+  'dclick-portfolio-1200.webp',
+  'dclick-portfolio-1800.webp',
+  'baluarte-portfolio-640.webp',
+  'baluarte-portfolio-1200.webp',
+  'baluarte-portfolio-1800.webp',
   'CV-AlejandroRuiz.pdf',
-  'rigby-go.png',
+  'rigby-go-64.webp',
   'grup-mediapro.svg',
 ]);
 
@@ -30,3 +42,4 @@ async function prune(directory, shouldKeep) {
 
 await prune(path.join(dist, 'assets'), (name) => name.startsWith('index-') || keepAssets.has(name));
 await prune(path.join(dist, 'fonts'), (name) => keepFonts.has(name));
+await Promise.all(['favicon.png', '.DS_Store'].map((name) => fs.rm(path.join(dist, name), { force: true })));
