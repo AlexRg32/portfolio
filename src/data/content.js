@@ -86,7 +86,7 @@ export const content = {
   es: {
     metaDescription: 'Portfolio de Alejandro Ruiz, frontend developer en Alicante.',
     nav: { work: 'Proyectos', experience: 'Experiencia', about: 'Perfil', contact: 'Contacto', menu: 'Abrir menú', close: 'Cerrar menú' },
-    hero: { eyebrow: 'Frontend developer — Alicante', title: ['Diseño.', 'Código.', 'Producto.'], intro: 'Creo interfaces digitales claras y rápidas.', primary: 'Proyectos', secondary: 'Contacto', imageAlt: 'Alejandro Ruiz junto a un lago', caption: 'Alejandro Ruiz' },
+    hero: { eyebrow: 'Frontend developer — Alicante', title: ['Soy Alejandro, frontend developer.'], intro: 'Hago webs claras, rápidas y fáciles de usar.', primary: 'Proyectos', secondary: 'Contacto', imageAlt: 'Alejandro Ruiz junto a un lago', caption: 'Alejandro Ruiz' },
     work: { eyebrow: 'Proyectos', title: 'Trabajo seleccionado.', intro: 'Diseño y desarrollo, de inicio a fin.', readCase: 'Ver proyecto', open: 'Abrir' },
     experience: { eyebrow: 'Experiencia', title: 'Ahora y antes.', skillsLabel: 'Tecnologías y capacidades', items: [
       { company: 'Polo Club', logo: '/assets/rigby-go.png', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — AHORA', description: 'E-commerce y herramientas internas.' },
@@ -99,7 +99,7 @@ export const content = {
   en: {
     metaDescription: 'Alejandro Ruiz is a frontend developer based in Alicante.',
     nav: { work: 'Projects', experience: 'Experience', about: 'Profile', contact: 'Contact', menu: 'Open menu', close: 'Close menu' },
-    hero: { eyebrow: 'Frontend developer — Alicante', title: ['Design.', 'Code.', 'Product.'], intro: 'I create clear, fast digital interfaces.', primary: 'Projects', secondary: 'Contact', imageAlt: 'Alejandro Ruiz by a lake', caption: 'Alejandro Ruiz' },
+    hero: { eyebrow: 'Frontend developer — Alicante', title: ['I’m Alejandro, a frontend developer.'], intro: 'I make websites clear, fast and easy to use.', primary: 'Projects', secondary: 'Contact', imageAlt: 'Alejandro Ruiz by a lake', caption: 'Alejandro Ruiz' },
     work: { eyebrow: 'Projects', title: 'Selected work.', intro: 'Design and development, end to end.', readCase: 'View project', open: 'Open' },
     experience: { eyebrow: 'Experience', title: 'Now and before.', skillsLabel: 'Technologies and capabilities', items: [
       { company: 'Polo Club', logo: '/assets/rigby-go.png', logoClass: 'experience-logo--rigby', role: 'IT Support & Development', period: '2026 — NOW', description: 'E-commerce and internal tools.' },
