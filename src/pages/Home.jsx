@@ -19,12 +19,16 @@ export default function Home({ lang }) {
       <main id="main">
         <section className="hero shell" aria-labelledby="hero-title">
           <div className="hero__copy">
-            <p className="kicker">{copy.hero.eyebrow}</p>
+            <div className="hero__topline">
+              <p className="kicker">{copy.hero.eyebrow}</p>
+              <p className="hero__availability"><span aria-hidden="true" />{copy.hero.availability}</p>
+            </div>
             <h1 id="hero-title">{copy.hero.title.map((line) => <span key={line}>{line}</span>)}</h1>
             <p className="hero__intro">{copy.hero.intro}</p>
             <div className="hero__actions">
-              <a className="text-link" href="#work">{copy.hero.primary}<span aria-hidden="true">↓</span></a>
+              <a className="button button--accent" href="#work">{copy.hero.primary}<span aria-hidden="true">↓</span></a>
               <a className="text-link" href="mailto:alexrg32@icloud.com">{copy.hero.secondary}<span aria-hidden="true">↗</span></a>
+              <a className="text-link" href="/assets/CV-AlejandroRuiz.pdf" target="_blank" rel="noreferrer">{copy.hero.cv}<span aria-hidden="true">↗</span></a>
             </div>
           </div>
           <figure className="hero__portrait">
