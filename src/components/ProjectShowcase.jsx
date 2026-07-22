@@ -12,7 +12,7 @@ export default function ProjectShowcase({ projects, copy, lang, casePrefix }) {
       <div className="project-list">
         {projects.map((project, index) => (
           <article className="project-row" key={project.slug}>
-            <Link className="project-row__link" to={`${casePrefix}${project.slug}`} aria-label={`${copy.readCase}: ${project.title}`}>
+            <Link className="project-row__link" to={`${casePrefix}${project.slug}`}>
               <div className="project-row__meta">
                 <p className="project-row__index"><span>0{index + 1}</span><span>{project.year}</span></p>
                 <h3>{project.title}</h3>
