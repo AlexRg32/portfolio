@@ -18,6 +18,14 @@ export default function SiteLayout() {
   const headerRef = useRef(null);
   const menuButtonRef = useRef(null);
   const closeMenu = () => setOpen(false);
+  const skipToContent = (event) => {
+    const main = document.getElementById('main');
+    if (!main) return;
+    event.preventDefault();
+    main.tabIndex = -1;
+    main.focus();
+    window.history.replaceState(null, '', '#main');
+  };
 
   useEffect(() => {
     document.body.classList.toggle('menu-open', open);
@@ -56,7 +64,7 @@ export default function SiteLayout() {
 
   return (
     <>
-      <a className="skip-link" href="#main">{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
+      <a className="skip-link" href="#main" onClick={skipToContent}>{lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}</a>
       <header ref={headerRef} className={`site-header ${open ? 'is-menu-open' : ''}`}>
         <div className="shell site-header__inner">
           <Link className="wordmark" to={home} aria-label="Alejandro Ruiz — Home" onClick={closeMenu}>
