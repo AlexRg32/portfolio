@@ -1,88 +1,42 @@
+import { useRef } from 'react';
 import { content, projects } from '../data/content';
-import ProjectShowcase from '../components/ProjectShowcase';
-import Reveal from '../components/Reveal';
+import { SECTION_IDS } from '../utils/routes';
 import RouteMeta from '../components/RouteMeta';
+import useEditorialReveal from '../motion/useEditorialReveal';
+import Hero from '../components/sections/Hero';
+import Credibility from '../components/sections/Credibility';
+import WorkSequence from '../components/sections/WorkSequence';
+import Thesis from '../components/sections/Thesis';
+import Services from '../components/sections/Services';
+import Process from '../components/sections/Process';
+import Studio from '../components/sections/Studio';
+import Contact from '../components/sections/Contact';
 
 export default function Home({ lang }) {
   const copy = content[lang];
-  const casePrefix = lang === 'es' ? '/trabajo/' : '/en/work/';
+  const ids = SECTION_IDS[lang];
+  const scope = useRef(null);
+
+  useEditorialReveal(scope, [lang]);
 
   return (
     <>
       <RouteMeta
         lang={lang}
-        title="Alejandro Ruiz — Frontend developer"
+        title={copy.metaTitle}
         description={copy.metaDescription}
         path={lang === 'es' ? '/' : '/en'}
       />
 
-      <main id="main">
-        <section className="hero shell" aria-labelledby="hero-title">
-          <div className="hero__copy">
-            <p className="kicker">{copy.hero.eyebrow}</p>
-            <h1 id="hero-title">{copy.hero.title.map((line) => <span key={line}>{line}</span>)}</h1>
-            <p className="hero__intro">{copy.hero.intro}</p>
-            <div className="hero__actions">
-              <a className="text-link" href="#work">{copy.hero.primary}<span aria-hidden="true">↓</span></a>
-              <a className="text-link" href="mailto:alexrg32@icloud.com">{copy.hero.secondary}<span aria-hidden="true">↗</span></a>
-            </div>
-          </div>
-          <figure className="hero__portrait">
-            <img src="/assets/alejandro-portrait.jpg" alt={copy.hero.imageAlt} fetchPriority="high" />
-            <figcaption><span>{copy.hero.caption}</span><span>2026</span></figcaption>
-          </figure>
-          <div className="hero__note" aria-hidden="true">
-            <span>01</span><span>Portfolio</span>
-          </div>
-        </section>
-
-        <ProjectShowcase projects={projects} copy={copy.work} lang={lang} casePrefix={casePrefix} />
-
-        <section className="experience" id="experience" aria-labelledby="experience-title">
-          <div className="shell experience__grid">
-            <Reveal className="section-heading section-heading--dark">
-              <p className="kicker">{copy.experience.eyebrow}</p>
-              <h2 id="experience-title">{copy.experience.title}</h2>
-            </Reveal>
-            <div className="timeline">
-              {copy.experience.items.map((item) => (
-                <Reveal as="article" className="timeline__item" key={item.company}>
-                  <div>
-                    <p className="mono-label">{item.period}</p>
-                    <div className="timeline__company">
-                      {item.logo && <img className={`experience-logo ${item.logoClass}`} src={item.logo} alt="" loading="lazy" />}
-                      <h3>{item.company}</h3>
-                    </div>
-                  </div>
-                  <div className="timeline__detail">
-                    <h4>{item.role}</h4>
-                    <p>{item.description}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="about shell" id="about" aria-labelledby="about-title">
-          <Reveal className="about__statement">
-            <p className="kicker">{copy.about.eyebrow}</p>
-            <h2 id="about-title">{copy.about.title}</h2>
-          </Reveal>
-          <Reveal className="about__copy">
-            <p>{copy.about.body}</p>
-            <p className="about__meta">{copy.about.meta}</p>
-          </Reveal>
-        </section>
-
-        <section className="contact shell" id="contact" aria-labelledby="contact-title">
-          <Reveal>
-            <p className="kicker">{copy.contact.eyebrow}</p>
-            <h2 id="contact-title">{copy.contact.title}</h2>
-            <p>{copy.contact.body}</p>
-            <a className="contact__email" href="mailto:alexrg32@icloud.com">alexrg32@icloud.com <span aria-hidden="true">↗</span></a>
-          </Reveal>
-        </section>
+      <main id="main" className="home" ref={scope}>
+        <Hero lang={lang} copy={copy.hero} ids={ids} />
+        <Credibility copy={copy.credibility} />
+        <WorkSequence lang={lang} copy={copy.work} projects={projects} id={ids.work} />
+        <Thesis copy={copy.thesis} id={ids.thesis} />
+        <Services lang={lang} copy={copy.services} id={ids.services} contactId={ids.contact} />
+        <Process copy={copy.process} id={ids.process} />
+        <Studio copy={copy.studio} id={ids.studio} />
+        <Contact lang={lang} copy={copy.contact} id={ids.contact} />
       </main>
     </>
   );

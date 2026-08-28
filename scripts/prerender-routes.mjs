@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getPrerenderRoutes, resolveMetaUrls } from '../src/utils/routeMeta.js';
+import { render } from '../dist-ssr/entry-server.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -27,11 +28,36 @@ function injectHeadContent(html, content) {
   return html.replace('</head>', `${content}\n  </head>`);
 }
 
-function renderHtml(template, metaInput) {
+function renderImagePreload(image) {
+  const base = image.replace(/\.[^.]+$/, '');
+  const isPortrait = base.endsWith('alejandro-portrait');
+  const widths = isPortrait ? [480, 800, 1200] : [640, 1200, 1800];
+  const fallbackWidth = isPortrait ? 800 : 1200;
+  const sizes = isPortrait
+    ? '(max-width: 700px) calc(100vw - 40px), (max-width: 1024px) 54vw, min(46vw, 720px)'
+    : '(max-width: 700px) 100vw, min(92vw, 1500px)';
+  const srcset = widths.map((width) => `${base}-${width}.webp ${width}w`).join(', ');
+  return `<link rel="preload" as="image" data-route-lcp="true" href="${base}-${fallbackWidth}.webp" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`;
+}
+
+const ROOT_PLACEHOLDER = '<div id="root"></div>';
+
+function renderHtml(template, metaInput, appHtml) {
   const meta = resolveMetaUrls(metaInput);
   let html = template;
 
+  // Ship the real markup, not an empty shell: every route is readable and
+  // indexable without running any JavaScript.
+  if (!html.includes(ROOT_PLACEHOLDER)) {
+    throw new Error('Expected an empty #root container in the built index.html');
+  }
+  html = html.replace(ROOT_PLACEHOLDER, `<div id="root">${appHtml}</div>`);
+
   html = html.replace('<html lang="es">', `<html lang="${meta.lang ?? 'es'}">`);
+  html = html.replace(
+    /<link[^>]*data-route-lcp="true"[^>]*>/,
+    meta.preloadImage ? renderImagePreload(meta.image) : ''
+  );
 
   html = replaceTag(html, /<title>[\s\S]*?<\/title>/, `<title>${escapeHtml(meta.title)}</title>`);
   html = replaceTag(
@@ -125,9 +151,12 @@ async function main() {
   const template = await fs.readFile(DIST_INDEX, 'utf8');
   const routes = getPrerenderRoutes();
 
-  await Promise.all(
-    routes.map(({ path: routePath, meta }) => writeRouteHtml(routePath, renderHtml(template, meta)))
-  );
+  for (const { path: routePath, meta } of routes) {
+    const appHtml = render(routePath);
+    await writeRouteHtml(routePath, renderHtml(template, meta, appHtml));
+  }
+
+  console.log(`Prerendered ${routes.length} routes with markup.`);
 }
 
 main().catch((error) => {
