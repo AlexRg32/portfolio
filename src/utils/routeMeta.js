@@ -1,14 +1,9 @@
-import { projects } from '../data/content.js';
+import { projects, content, LINKEDIN_URL, GITHUB_URL } from '../data/content.js';
 
 export const SITE = {
   name: 'Alejandro Ruiz',
   url: 'https://alexrg.es/',
   image: '/assets/alejandro-portrait.jpg',
-};
-
-const descriptions = {
-  es: 'Portfolio de Alejandro Ruiz, frontend developer en Alicante.',
-  en: 'Alejandro Ruiz is a frontend developer based in Alicante.',
 };
 
 function withLeadingSlash(value) {
@@ -20,27 +15,46 @@ function absoluteUrl(value) {
   return new URL(withLeadingSlash(value), SITE.url).toString();
 }
 
-function createMeta({ title, description, path = '/', image = SITE.image, type = 'website', schema = null, noIndex = false, lang = 'es', preloadImage = false }) {
+function createMeta({
+  title,
+  description,
+  path = '/',
+  image = SITE.image,
+  type = 'website',
+  schema = null,
+  noIndex = false,
+  lang = 'es',
+  preloadImage = false,
+}) {
   return { title, description, path: withLeadingSlash(path), image, type, schema, noIndex, lang, preloadImage };
 }
 
+/**
+ * Person, not Organization. Alejandro works alone; describing the site as a
+ * company in structured data would be a claim that is not true.
+ */
 function personSchema(lang) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Alejandro Ruiz Gasch',
-    jobTitle: 'Frontend Developer',
+    alternateName: 'Alejandro Ruiz',
+    jobTitle: lang === 'es' ? 'Diseñador y desarrollador web' : 'Web designer and developer',
     url: SITE.url,
-    description: descriptions[lang],
-    sameAs: ['https://github.com/AlexRg32', 'https://www.linkedin.com/in/alejandro-ruiz-gasch-0230542b3/'],
+    image: absoluteUrl(SITE.image),
+    description: content[lang].metaDescription,
+    address: { '@type': 'PostalAddress', addressLocality: 'Alicante', addressCountry: 'ES' },
+    knowsAbout: ['UX/UI', 'Art direction', 'Frontend development', 'React', 'Laravel', 'Odoo', 'Shopify'],
+    sameAs: [GITHUB_URL, LINKEDIN_URL],
   };
 }
 
 function projectMeta(project, lang) {
   const prefix = lang === 'es' ? '/trabajo/' : '/en/work/';
+  const text = project[lang];
   return createMeta({
-    title: `${project.title} — Alejandro Ruiz`,
-    description: project.summary[lang],
+    title: `${project.title} — ${text.category} · Alejandro Ruiz`,
+    description: text.summary,
     path: `${prefix}${project.slug}`,
     image: project.image,
     type: 'article',
@@ -50,29 +64,60 @@ function projectMeta(project, lang) {
       '@context': 'https://schema.org',
       '@type': 'CreativeWork',
       name: project.title,
-      description: project.summary[lang],
+      description: text.summary,
+      about: text.sector,
       image: absoluteUrl(project.image),
       url: absoluteUrl(`${prefix}${project.slug}`),
-      creator: { '@type': 'Person', name: 'Alejandro Ruiz Gasch' },
+      dateCreated: project.year,
+      creator: { '@type': 'Person', name: 'Alejandro Ruiz Gasch', url: SITE.url },
     },
   });
 }
 
 export function getPrerenderRoutes() {
   const base = [
-    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.es, path: '/', schema: personSchema('es'), preloadImage: true }),
-    createMeta({ title: 'Alejandro Ruiz — Frontend developer', description: descriptions.en, path: '/en', lang: 'en', schema: personSchema('en'), preloadImage: true }),
-    createMeta({ title: 'Privacidad — Alejandro Ruiz', description: 'Información sobre privacidad y tratamiento de datos en alexrg.es.', path: '/privacidad' }),
-    createMeta({ title: 'Privacy — Alejandro Ruiz', description: 'Privacy and data processing information for alexrg.es.', path: '/en/privacy', lang: 'en' }),
-    createMeta({ title: '404 — Alejandro Ruiz', description: 'Página no encontrada.', path: '/404', noIndex: true }),
+    createMeta({
+      title: content.es.metaTitle,
+      description: content.es.metaDescription,
+      path: '/',
+      schema: personSchema('es'),
+      preloadImage: true,
+    }),
+    createMeta({
+      title: content.en.metaTitle,
+      description: content.en.metaDescription,
+      path: '/en',
+      lang: 'en',
+      schema: personSchema('en'),
+      preloadImage: true,
+    }),
+    createMeta({
+      title: 'Privacidad — Alejandro Ruiz',
+      description: 'Cómo se tratan los datos que envías a través de alexrg.es.',
+      path: '/privacidad',
+    }),
+    createMeta({
+      title: 'Privacy — Alejandro Ruiz',
+      description: 'How the data you send through alexrg.es is handled.',
+      path: '/en/privacy',
+      lang: 'en',
+    }),
+    createMeta({
+      title: '404 — Alejandro Ruiz',
+      description: 'Página no encontrada.',
+      path: '/404',
+      noIndex: true,
+    }),
   ];
 
   return [
     ...base.map((meta) => ({ path: meta.path, meta })),
-    ...projects.flatMap((project) => ['es', 'en'].map((lang) => {
-      const meta = projectMeta(project, lang);
-      return { path: meta.path, meta };
-    })),
+    ...projects.flatMap((project) =>
+      ['es', 'en'].map((lang) => {
+        const meta = projectMeta(project, lang);
+        return { path: meta.path, meta };
+      }),
+    ),
   ];
 }
 

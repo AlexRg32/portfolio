@@ -1,33 +1,33 @@
 import { Link } from 'react-router-dom';
 import RouteMeta from '../components/RouteMeta';
-
-const copy = {
-  es: {
-    signal: 'Señal perdida',
-    title: 'Esta ruta no lleva a ninguna parte.',
-    action: 'Volver al inicio',
-    description: 'Página no encontrada',
-  },
-  en: {
-    signal: 'Signal lost',
-    title: 'This route leads nowhere.',
-    action: 'Back to home',
-    description: 'Page not found',
-  },
-};
+import Monogram from '../components/Monogram';
+import { content } from '../data/content';
+import { homePath, sectionHref, SECTION_IDS } from '../utils/routes';
 
 export default function NotFound({ lang = 'es' }) {
-  const text = copy[lang];
-  const home = lang === 'en' ? '/en' : '/';
+  const copy = content[lang].notFound;
+  const ids = SECTION_IDS[lang];
 
   return (
     <>
-      <RouteMeta lang={lang} title="404 — Alejandro Ruiz" description={text.description} path="/404" noIndex />
-      <main id="main" className="not-found shell">
-        <p className="kicker"><span aria-hidden="true">ERR / </span>{text.signal}</p>
-        <p className="not-found__code" aria-hidden="true">404</p>
-        <h1>{text.title}</h1>
-        <Link className="button button--ink" to={home}>{text.action} <span aria-hidden="true">→</span></Link>
+      <RouteMeta lang={lang} title={`404 — Alejandro Ruiz`} description={copy.title} path="/404" noIndex />
+      <main id="main" className="not-found">
+        <div className="shell not-found__inner">
+          <p className="mono index-mark">{copy.signal}</p>
+          <p className="not-found__code display" aria-hidden="true">{copy.code}</p>
+          <h1 className="title-xl">{copy.title}</h1>
+          <p className="body">{copy.body}</p>
+          <p className="not-found__actions">
+            <Link className="cta" to={homePath(lang)}>
+              <span>{copy.action}</span>
+              <span className="cta__arrow" aria-hidden="true">→</span>
+            </Link>
+            <Link className="link" to={sectionHref(lang, ids.work)}>
+              {copy.work}<span className="link__arrow" aria-hidden="true">↗</span>
+            </Link>
+          </p>
+          <Monogram className="not-found__monogram" strokeWidth={1.2} />
+        </div>
       </main>
     </>
   );
