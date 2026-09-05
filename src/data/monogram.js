@@ -1,4 +1,4 @@
-/** The AR monogram geometry. Shared by the SVG mark and the WebGL lattice. */
+/** The AR monogram geometry, drawn as strokes so it can be built line by line. */
 export const AR_PATHS = [
   'M34 10 L8 90',
   'M34 10 L60 90',

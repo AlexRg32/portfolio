@@ -1,8 +1,10 @@
 /* ------------------------------------------------------------------
-   Alejandro Ruiz — Human Machine Editorial
-   Design tokens. Every value in the interface comes from here.
+   Alejandro Ruiz — design tokens.
+   Every value in the interface comes from here.
    ------------------------------------------------------------------ */
 
+/* Display and body face. The variable axes are what make the headline
+   voice possible: weight 100–900 and width 62–125%. */
 @font-face {
   font-family: 'Archivo';
   src: url('/fonts/Archivo-Variable.woff2') format('woff2-variations');
@@ -12,9 +14,8 @@
 }
 
 /*
- * Metric-matched fallback. Measured against the real Archivo file so the text
- * occupies the same space before and after the webfont lands: the swap is
- * invisible and costs no layout shift.
+ * Metric-matched fallback for running text. Measured against the real Archivo
+ * file so the text occupies the same space before and after the webfont lands.
  */
 @font-face {
   font-family: 'Archivo Fallback';
@@ -23,6 +24,27 @@
   ascent-override: 87.2%;
   descent-override: 20.8%;
   line-gap-override: 0%;
+}
+
+/*
+ * A second fallback, narrowed, for the condensed display voice. Without it the
+ * headline would be laid out at normal width for one frame and jump.
+ */
+@font-face {
+  font-family: 'Archivo Condensed Fallback';
+  src: local('Arial Narrow'), local('Helvetica Neue Condensed Bold'), local('Arial'), local('Liberation Sans Narrow');
+  size-adjust: 66%;
+  ascent-override: 132%;
+  descent-override: 31%;
+  line-gap-override: 0%;
+}
+
+/* Identity and accents. */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay-Variable.woff2') format('woff2-variations');
+  font-weight: 200 700;
+  font-display: swap;
 }
 
 @font-face {
@@ -43,106 +65,121 @@
 
 :root {
   /* --- Surface ------------------------------------------------------ */
-  --ink: #0a0a09;
-  --paper: #e9e3d8;
-  --paper-deep: #d5cdc0;
-  --paper-lift: #f1ece3;
-  --on-dark: #f0ece4;
+  --paper: #eae6dd;        /* warm cream, the ground of the whole site */
+  --paper-warm: #efeeec;   /* warm white, for lifted plates */
+  --paper-deep: #ded8cb;
+  --ink: #1b1a18;
+  --ink-deep: #121110;
+  --on-dark: #efeeec;
 
   /* --- Signal ------------------------------------------------------- */
-  --cobalt: #2146ff;
-  --cobalt-deep: #1734c9;
-  --cobalt-on-dark: #8aa4ff;
+  --flame: #f05235;        /* the one accent: large masses, never small text */
+  --flame-deep: #d8412a;
+  --flame-soft: #f7876f;
 
   /* --- Text --------------------------------------------------------- */
-  --muted: #76736c;          /* large text and non-text marks only (3.7:1) */
-  --muted-strong: #56534c;   /* small text on paper (6.0:1) and on deep paper (4.9:1) */
-  --muted-on-dark: #9c988f;  /* small text on ink (6.9:1) */
+  --muted: #5c574e;         /* on paper — 5.9:1 */
+  --muted-soft: #7d776c;    /* large text and marks only on paper — 3.8:1 */
+  --muted-on-dark: #9a948a; /* on ink — 5.7:1 */
+  --on-flame: var(--ink);   /* black on orange — 5.0:1. Never white. */
+  --on-flame-muted: #4a2a20;
 
   /* --- Lines -------------------------------------------------------- */
-  --hairline: rgb(10 10 9 / 0.18);
-  --hairline-soft: rgb(10 10 9 / 0.09);
-  --hairline-dark: rgb(240 236 228 / 0.18);
-  --hairline-dark-soft: rgb(240 236 228 / 0.08);
+  --hairline: rgb(27 26 24 / 0.16);
+  --hairline-soft: rgb(27 26 24 / 0.08);
+  --hairline-dark: rgb(239 238 236 / 0.18);
+  --hairline-dark-soft: rgb(239 238 236 / 0.08);
 
-  /* --- Contextual (overridden per section / per project) ------------ */
+  /* --- Contextual (overridden per section) --------------------------- */
   --surface: var(--paper);
   --on-surface: var(--ink);
-  --on-surface-muted: var(--muted-strong);
+  --on-surface-muted: var(--muted);
   --rule: var(--hairline);
-  --signal: var(--cobalt);
+  --signal: var(--flame);
 
   /* --- Type --------------------------------------------------------- */
-  --font-display: 'Archivo', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Archivo', 'Archivo Condensed Fallback', 'Arial Narrow', Arial, sans-serif;
   --font-body: 'Archivo', 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif;
+  --font-accent: 'Clash Display', 'Archivo', 'Archivo Fallback', Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --step-display: clamp(3.9rem, 10.6vw, 11.25rem); /* 62 → 180px */
-  --step-xl: clamp(2.9rem, 6.6vw, 6.5rem);
-  --step-lg: clamp(2.1rem, 4.2vw, 4rem);
-  --step-md: clamp(1.55rem, 2.5vw, 2.4rem);
-  --step-sm: clamp(1.15rem, 1.5vw, 1.45rem);
-  --step-body: clamp(1.0625rem, 0.42vw + 0.98rem, 1.3125rem); /* 17 → 21px */
-  --step-body-sm: clamp(0.95rem, 0.2vw + 0.9rem, 1.0625rem);
+  --step-display: clamp(3.4rem, 13vw, 12rem);
+  --step-xl: clamp(2.6rem, 7.4vw, 7rem);
+  --step-lg: clamp(2rem, 4.6vw, 4.2rem);
+  --step-md: clamp(1.4rem, 2.2vw, 2.1rem);
+  --step-sm: clamp(1.1rem, 1.4vw, 1.35rem);
+  --step-body: clamp(1.0625rem, 0.34vw + 1rem, 1.25rem);
+  --step-body-sm: clamp(0.95rem, 0.18vw + 0.9rem, 1.0625rem);
   --step-mono: 0.6875rem;
   --step-mono-lg: 0.78rem;
 
-  --tracking-display: -0.045em;
-  --tracking-tight: -0.028em;
-  --tracking-mono: 0.1em;
-  --leading-display: 0.86;
-  --leading-tight: 1.04;
+  /* The condensed display voice, in one place. */
+  --display-weight: 900;
+  --display-stretch: 62%;
+  --tracking-display: -0.018em;
+  --tracking-tight: -0.02em;
+  --tracking-mono: 0.11em;
+  --leading-display: 0.8;
   --leading-body: 1.55;
-  --measure: 62ch;
-  --measure-tight: 46ch;
+  --measure: 56ch;
+  --measure-tight: 34ch;
 
   /* --- Grid --------------------------------------------------------- */
-  --max: 1600px;
-  --gutter: clamp(20px, 4.2vw, 72px);
+  --max: 1680px;
+  --gutter: clamp(18px, 3.6vw, 64px);
   --shell: min(100% - (var(--gutter) * 2), var(--max));
-  --cols: 12;
-  --col-gap: clamp(16px, 1.7vw, 28px);
+  --col-gap: clamp(16px, 1.7vw, 32px);
 
   /* --- Rhythm ------------------------------------------------------- */
-  --space-section: clamp(88px, 12vw, 200px);
+  --space-section: clamp(96px, 13vw, 220px);
   --space-block: clamp(40px, 5vw, 88px);
-  --space-row: clamp(22px, 2.4vw, 40px);
-  --header-h: 76px;
+  --space-row: clamp(18px, 2vw, 34px);
+  --header-h: 72px;
 
   /* --- Motion ------------------------------------------------------- */
   --dur-micro: 160ms;
   --dur-ui: 320ms;
-  --dur-editorial: 720ms;
-  --dur-cinema: 1100ms;
+  --dur-editorial: 700ms;
+  --dur-cinema: 1000ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.55, 0.06, 0.68, 0.19);
   --ease-inout: cubic-bezier(0.65, 0.02, 0.28, 1);
 
   /* --- Texture ------------------------------------------------------ */
   --grain: url('/assets/grain.png');
-  --grain-opacity: 0.055;
+  --grain-opacity: 0.05;
 }
 
-/* Sections that invert the surface use this class, not hard-coded colours. */
+/* Inverted surface: ink ground, warm white text. */
 .on-ink {
   --surface: var(--ink);
   --on-surface: var(--on-dark);
   --on-surface-muted: var(--muted-on-dark);
   --rule: var(--hairline-dark);
-  --signal: var(--cobalt-on-dark);
+  --signal: var(--flame);
+  color: var(--on-surface);
+  background-color: var(--surface);
+}
+
+/* Orange mass: ink text only, never white. */
+.on-flame {
+  --surface: var(--flame);
+  --on-surface: var(--ink);
+  --on-surface-muted: var(--on-flame-muted);
+  --rule: rgb(27 26 24 / 0.24);
+  --signal: var(--ink);
   color: var(--on-surface);
   background-color: var(--surface);
 }
 
 @media (max-width: 1024px) {
-  :root { --cols: 6; --header-h: 68px; }
+  :root { --header-h: 66px; }
 }
 
 @media (max-width: 700px) {
   :root {
-    --cols: 4;
-    --header-h: 64px;
-    --step-display: clamp(3rem, 13.5vw, 4.6rem);
-    --space-section: clamp(72px, 16vw, 110px);
+    --header-h: 60px;
+    --space-section: clamp(76px, 17vw, 120px);
+    --leading-display: 0.84;
   }
 }

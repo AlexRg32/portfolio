@@ -1,47 +1,68 @@
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { gsap, DUR, EASE, STAGGER, MQ } from '../../motion/config';
+import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
-import MaskLines from '../MaskLines';
-import HeroLattice from '../HeroLattice';
-import { sectionHref } from '../../utils/routes';
+import { gsap, DUR, EASE, STAGGER, MQ, prefersReducedMotion } from '../../motion/config';
+import FitLines from '../FitLines';
+import Seal from '../Seal';
+import Magnetic from '../Magnetic';
 
-export default function Hero({ lang, copy, ids }) {
+/**
+ * The whole first screen: name, role, place, one headline that fills the
+ * frame, one photograph and one way in. Nothing else.
+ */
+export default function Hero({ copy, ids }) {
   const scope = useRef(null);
-  const portraitRef = useRef(null);
 
   useGSAP(
     () => {
+      const root = scope.current;
+      const portrait = root.querySelector('[data-hero-portrait]');
       const mm = gsap.matchMedia();
 
-      // Entrance. Runs after the content is already painted.
-      mm.add(MQ.motion, () => {
-        const lines = scope.current.querySelectorAll('[data-line-inner]');
-        const tl = gsap.timeline({ delay: 0.12, defaults: { ease: EASE.enter } });
-        gsap.set(lines, { yPercent: 108 });
-        gsap.set('[data-hero-fade]', { autoAlpha: 0, y: 18 });
-        tl.to(lines, { yPercent: 0, duration: DUR.cinema, stagger: STAGGER.type })
-          .to('[data-hero-fade]', { autoAlpha: 1, y: 0, duration: DUR.editorial, stagger: STAGGER.block }, '-=0.62');
-      });
+      /*
+       * The entrance is deliberately kept out of matchMedia. A matchMedia
+       * context is reverted and replayed whenever ScrollTrigger refreshes —
+       * which late fonts and images make certain — and a first-screen
+       * entrance that gets reverted leaves the headline hidden for good.
+       */
+      if (!prefersReducedMotion()) {
+        const lines = root.querySelectorAll('.hero__title [data-line-inner]');
+        const fades = root.querySelectorAll('[data-hero-fade]');
 
-      // Portrait depth: the photograph answers the pointer without floating away.
+        gsap.set(lines, { yPercent: 115 });
+        gsap.set(fades, { opacity: 0, y: 16 });
+        if (portrait) {
+          gsap.set(portrait, { clipPath: 'inset(100% 0% 0% 0%)' });
+          gsap.set(portrait.querySelector('img'), { scale: 1.18 });
+        }
+
+        const tl = gsap.timeline({
+          delay: 0.1,
+          defaults: { ease: EASE.enter },
+          // Nothing of the entrance survives it: the finished page carries no
+          // inline state that a later revert could strand.
+          onComplete: () => {
+            gsap.set(lines, { clearProps: 'transform' });
+            gsap.set(fades, { clearProps: 'opacity,transform' });
+            if (portrait) gsap.set(portrait, { clearProps: 'clipPath' });
+          },
+        });
+
+        tl.to(lines, { yPercent: 0, duration: DUR.cinema, stagger: STAGGER.type });
+        if (portrait) {
+          tl.to(portrait, { clipPath: 'inset(0% 0% 0% 0%)', duration: DUR.cinema, ease: EASE.inOut }, '-=0.78')
+            .to(portrait.querySelector('img'), { scale: 1, duration: 1.4 }, '<');
+        }
+        tl.to(fades, { opacity: 1, y: 0, duration: DUR.editorial, stagger: STAGGER.block }, '-=0.9');
+      }
+
+      // The photograph drifts a little against the type as the page moves.
       mm.add(MQ.desktop, () => {
-        const figure = portraitRef.current;
-        if (!figure) return;
-        const image = figure.querySelector('img');
-        const toX = gsap.quickTo(image, 'x', { duration: 0.9, ease: 'power3.out' });
-        const toY = gsap.quickTo(image, 'y', { duration: 0.9, ease: 'power3.out' });
-        const toRot = gsap.quickTo(figure, 'rotate', { duration: 1.1, ease: 'power3.out' });
-
-        const onMove = (event) => {
-          const cx = event.clientX / window.innerWidth - 0.5;
-          const cy = event.clientY / window.innerHeight - 0.5;
-          toX(cx * -26);
-          toY(cy * -18);
-          toRot(cx * 0.5);
-        };
-        window.addEventListener('pointermove', onMove, { passive: true });
-        return () => window.removeEventListener('pointermove', onMove);
+        if (!portrait) return;
+        gsap.to(portrait, {
+          yPercent: -6,
+          ease: 'none',
+          scrollTrigger: { trigger: root, start: 'top top', end: 'bottom top', scrub: 0.5 },
+        });
       });
 
       return () => mm.revert();
@@ -49,66 +70,55 @@ export default function Hero({ lang, copy, ids }) {
     { scope },
   );
 
-  useEffect(() => {
-    // Keep the LCP image out of any animated wrapper.
-    portraitRef.current?.style.removeProperty('opacity');
-  }, []);
-
   return (
     <section className="hero" ref={scope} aria-labelledby="hero-title">
-      <HeroLattice />
+      <div className="hero__mass" aria-hidden="true" />
 
-      <div className="shell hero__grid">
-        <p className="hero__eyebrow" data-hero-fade>
-          <span className="hero__eyebrow-name">{copy.eyebrowName}</span>
-          <span className="mono">{copy.eyebrowRole}</span>
-          <span className="mono hero__eyebrow-place">{copy.eyebrowPlace}</span>
-        </p>
+      <div className="shell hero__top" data-hero-fade>
+        <p className="hero__name accent">{copy.name}</p>
+        <p className="mono hero__role">{copy.role}</p>
+        <p className="mono hero__place">{copy.place}</p>
+      </div>
 
-        <p className="hero__availability mono" data-hero-fade>
-          <span className="status-dot" aria-hidden="true" />
-          {copy.availability}
-        </p>
-
-        <h1 className="hero__title display" id="hero-title">
-          <MaskLines lines={copy.titleLines} />
-        </h1>
-
-        <div className="hero__lede" data-hero-fade>
-          <p className="lede">{copy.support}</p>
+      <div className="shell hero__stage">
+        <div className="hero__type" data-fit-frame>
+          <h1 className="hero__title display" id="hero-title">
+            <span className="sr-only">{copy.title}</span>
+            <FitLines className="hero__lines hero__lines--wide" lines={copy.titleLines} fitHeight aria-hidden="true" />
+            <FitLines className="hero__lines hero__lines--narrow" lines={copy.titleLinesNarrow} fitHeight aria-hidden="true" />
+          </h1>
         </div>
 
-        <div className="hero__actions" data-hero-fade>
-          <Link className="cta" to={sectionHref(lang, ids.contact)} data-cursor="cta">
-            <span>{copy.primary}</span>
-            <span className="cta__arrow" aria-hidden="true">→</span>
-          </Link>
-          <a className="cta cta--ghost" href={`#${ids.work}`} data-cursor="cta">
-            <span>{copy.secondary}</span>
-            <span className="cta__arrow" aria-hidden="true">↓</span>
-          </a>
-        </div>
-
-        <figure className="hero__portrait" ref={portraitRef}>
-          <div className="hero__portrait-frame">
-            <img
-              src="/assets/alejandro-portrait-800.webp"
-              srcSet="/assets/alejandro-portrait-480.webp 480w, /assets/alejandro-portrait-800.webp 800w, /assets/alejandro-portrait-1200.webp 1200w"
-              sizes="(max-width: 700px) calc(100vw - 40px), (max-width: 1024px) 54vw, min(46vw, 720px)"
-              width="2200"
-              height="1466"
-              alt={copy.portraitAlt}
-              fetchPriority="high"
-              decoding="async"
-            />
-          </div>
-          <figcaption className="mono">
-            <span>{copy.portraitCaption}</span>
-            <span>{copy.portraitMeta}</span>
-          </figcaption>
+        <figure className="hero__portrait" data-hero-portrait>
+          <img
+            src="/assets/alejandro-hero-560.webp"
+            srcSet="/assets/alejandro-hero-384.webp 384w, /assets/alejandro-hero-560.webp 560w, /assets/alejandro-hero-768.webp 768w"
+            sizes="(max-width: 700px) 52vw, (max-width: 1024px) 30vw, min(24vw, 380px)"
+            width="768"
+            height="1024"
+            alt={copy.portraitAlt}
+            fetchPriority="high"
+            decoding="async"
+          />
         </figure>
+      </div>
 
-        <p className="hero__scroll mono" data-hero-fade aria-hidden="true">
+      <div className="shell hero__bottom" data-hero-fade>
+        <Magnetic className="hero__seal-magnet">
+          <a className="hero__seal" href={`#${ids.work}`} data-cursor="cta">
+            <Seal text={copy.seal}>
+              <span aria-hidden="true">↓</span>
+            </Seal>
+            <span className="sr-only">{copy.sealAction}</span>
+          </a>
+        </Magnetic>
+
+        <a className="cta hero__cta" href={`#${ids.work}`} data-cursor="cta">
+          <span>{copy.cta}</span>
+          <span className="cta__arrow" aria-hidden="true">↓</span>
+        </a>
+
+        <p className="mono hero__scroll" aria-hidden="true">
           <span className="hero__scroll-rule" />
           {copy.scroll}
         </p>

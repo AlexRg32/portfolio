@@ -10,12 +10,9 @@ const keepAssets = new Set([
   'dclick-portfolio.jpg',
   'monica-gallardo-portfolio.jpg',
   'alejandro-portrait.jpg',
-  'alejandro-portrait-480.webp',
-  'alejandro-portrait-800.webp',
-  'alejandro-portrait-1200.webp',
-  'alejandro-figure-480.webp',
-  'alejandro-figure-760.webp',
-  'alejandro-figure-1100.webp',
+  'alejandro-hero-384.webp',
+  'alejandro-hero-560.webp',
+  'alejandro-hero-768.webp',
   'monica-gallardo-portfolio-640.webp',
   'monica-gallardo-portfolio-1200.webp',
   'monica-gallardo-portfolio-1800.webp',
@@ -41,14 +38,12 @@ const keepAssets = new Set([
   'baluarte-mobile-420.webp',
   'baluarte-mobile-780.webp',
   'CV-AlejandroRuiz.pdf',
-  'rigby-go-64.webp',
-  'grup-mediapro.svg',
-  'ar-lattice.svg',
   'grain.png',
 ]);
 
 const keepFonts = new Set([
   'Archivo-Variable.woff2',
+  'ClashDisplay-Variable.woff2',
   'IBMPlexMono-Regular.woff2',
   'IBMPlexMono-Medium.woff2',
 ]);

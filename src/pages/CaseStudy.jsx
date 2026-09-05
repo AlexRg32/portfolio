@@ -124,7 +124,7 @@ export default function CaseStudy({ lang }) {
           </div>
 
           <div className="shell case__result-grid">
-            <figure className="case__shot case__shot--desktop" data-reveal="up">
+            <figure className="case__shot case__shot--desktop" data-reveal="clip">
               <img
                 src={`${project.detailBase}-1200.webp`}
                 srcSet={srcSet(project.detailBase, project.detailWidths)}
@@ -138,7 +138,7 @@ export default function CaseStudy({ lang }) {
               <figcaption className="mono">{copy.desktopLabel}</figcaption>
             </figure>
 
-            <figure className="case__shot case__shot--mobile" data-reveal="up">
+            <figure className="case__shot case__shot--mobile" data-reveal="clip">
               <img
                 src={`${project.mobileBase}-420.webp`}
                 srcSet={srcSet(project.mobileBase, project.mobileWidths)}
@@ -186,13 +186,15 @@ export default function CaseStudy({ lang }) {
         </TransitionLink>
 
         {/* 12 — Start a similar project */}
-        <section className="shell case__cta" aria-labelledby="case-cta-title">
-          <h2 className="title-xl" id="case-cta-title">{copy.ctaTitle}</h2>
-          <p className="body">{copy.ctaBody}</p>
-          <Link className="cta" to={sectionHref(lang, ids.contact)} data-cursor="cta">
-            <span>{copy.cta}</span>
-            <span className="cta__arrow" aria-hidden="true">→</span>
-          </Link>
+        <section className="case__cta on-flame" aria-labelledby="case-cta-title">
+          <div className="case__cta-inner">
+            <h2 className="title-xl" id="case-cta-title">{copy.ctaTitle}</h2>
+            <p className="body">{copy.ctaBody}</p>
+            <Link className="cta" to={sectionHref(lang, ids.contact)} data-cursor="cta">
+              <span>{copy.cta}</span>
+              <span className="cta__arrow" aria-hidden="true">→</span>
+            </Link>
+          </div>
         </section>
       </main>
     </>

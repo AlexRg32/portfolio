@@ -4,11 +4,11 @@ import { gsap, prefersReducedMotion } from '../motion/config';
 /**
  * A contextual cursor for fine pointers only. Never mounted on touch devices
  * or with reduced motion, and purely decorative: it carries no information
- * that is not already in the DOM.
+ * that is not already in the DOM. Over a project it reads the project name.
  */
 export default function Cursor() {
   const [enabled, setEnabled] = useState(false);
-  const dotRef = useRef(null);
+  const rootRef = useRef(null);
   const labelRef = useRef(null);
 
   useEffect(() => {
@@ -21,12 +21,12 @@ export default function Cursor() {
   }, []);
 
   useEffect(() => {
-    if (!enabled || !dotRef.current) return undefined;
+    if (!enabled || !rootRef.current) return undefined;
 
-    const dot = dotRef.current;
+    const root = rootRef.current;
     const label = labelRef.current;
-    const x = gsap.quickTo(dot, 'x', { duration: 0.36, ease: 'power3.out' });
-    const y = gsap.quickTo(dot, 'y', { duration: 0.36, ease: 'power3.out' });
+    const x = gsap.quickTo(root, 'x', { duration: 0.34, ease: 'power3.out' });
+    const y = gsap.quickTo(root, 'y', { duration: 0.34, ease: 'power3.out' });
 
     const onMove = (event) => {
       x(event.clientX);
@@ -35,13 +35,13 @@ export default function Cursor() {
 
     const onOver = (event) => {
       const target = event.target instanceof Element ? event.target.closest('[data-cursor]') : null;
-      const mode = target?.dataset.cursor ?? null;
-      dot.dataset.mode = mode ?? '';
+      const mode = target?.dataset.cursor ?? '';
+      root.dataset.mode = mode;
       if (label) label.textContent = target?.dataset.cursorLabel ?? '';
     };
 
-    const onLeave = () => { dot.dataset.state = 'out'; };
-    const onEnter = () => { dot.dataset.state = 'in'; };
+    const onLeave = () => { root.dataset.state = 'out'; };
+    const onEnter = () => { root.dataset.state = 'in'; };
 
     window.addEventListener('pointermove', onMove, { passive: true });
     document.addEventListener('pointerover', onOver, { passive: true });
@@ -59,9 +59,11 @@ export default function Cursor() {
   if (!enabled) return null;
 
   return (
-    <div className="cursor" ref={dotRef} aria-hidden="true" data-state="in">
-      <span className="cursor__ring" />
-      <span className="cursor__label" ref={labelRef} />
+    <div className="cursor" ref={rootRef} aria-hidden="true" data-state="in">
+      <span className="cursor__dot" />
+      <span className="cursor__pill">
+        <span className="cursor__label" ref={labelRef} />
+      </span>
     </div>
   );
 }

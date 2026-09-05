@@ -30,14 +30,16 @@ function injectHeadContent(html, content) {
 
 function renderImagePreload(image) {
   const base = image.replace(/\.[^.]+$/, '');
+  // The home page leads with the portrait; a case study leads with its plate.
   const isPortrait = base.endsWith('alejandro-portrait');
-  const widths = isPortrait ? [480, 800, 1200] : [640, 1200, 1800];
-  const fallbackWidth = isPortrait ? 800 : 1200;
+  const href = isPortrait ? '/assets/alejandro-hero-560.webp' : `${base}-1200.webp`;
+  const srcset = isPortrait
+    ? '/assets/alejandro-hero-384.webp 384w, /assets/alejandro-hero-560.webp 560w, /assets/alejandro-hero-768.webp 768w'
+    : [640, 1200, 1800].map((width) => `${base}-${width}.webp ${width}w`).join(', ');
   const sizes = isPortrait
-    ? '(max-width: 700px) calc(100vw - 40px), (max-width: 1024px) 54vw, min(46vw, 720px)'
+    ? '(max-width: 700px) 58vw, (max-width: 1024px) 34vw, min(30vw, 430px)'
     : '(max-width: 700px) 100vw, min(92vw, 1500px)';
-  const srcset = widths.map((width) => `${base}-${width}.webp ${width}w`).join(', ');
-  return `<link rel="preload" as="image" data-route-lcp="true" href="${base}-${fallbackWidth}.webp" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`;
+  return `<link rel="preload" as="image" data-route-lcp="true" href="${href}" imagesrcset="${srcset}" imagesizes="${sizes}" fetchpriority="high" />`;
 }
 
 const ROOT_PLACEHOLDER = '<div id="root"></div>';

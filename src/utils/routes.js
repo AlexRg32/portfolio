@@ -39,6 +39,6 @@ export function sectionHref(lang, id) {
 
 /** Home-page section ids, localised so the URL hash reads in the page language. */
 export const SECTION_IDS = {
-  es: { work: 'trabajo', thesis: 'enfoque', services: 'servicios', process: 'proceso', studio: 'estudio', contact: 'briefing' },
-  en: { work: 'work', thesis: 'approach', services: 'services', process: 'process', studio: 'studio', contact: 'briefing' },
+  es: { work: 'trabajo', experience: 'experiencia', contact: 'contacto' },
+  en: { work: 'work', experience: 'experience', contact: 'contact' },
 };

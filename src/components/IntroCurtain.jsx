@@ -67,10 +67,10 @@ export default function IntroCurtain({ lang }) {
   if (!active) return null;
 
   return (
-    <div className="intro on-ink" ref={rootRef} role="presentation">
+    <div className="intro on-flame" ref={rootRef} role="presentation">
       <div className="intro__stage">
         <Monogram className="intro__monogram" strokeWidth={2.2} />
-        <p className="intro__name">
+        <p className="intro__name display">
           {['Alejandro', 'Ruiz'].map((word) => (
             <span className="mask-line" key={word}>
               <span className="intro__word">{word}</span>

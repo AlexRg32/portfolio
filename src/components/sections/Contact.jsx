@@ -1,31 +1,66 @@
-import BriefForm from '../BriefForm';
-import Monogram from '../Monogram';
-import { SITE_EMAIL } from '../../data/content';
+import FitLines from '../FitLines';
+import Seal from '../Seal';
+import Magnetic from '../Magnetic';
+import { SITE_EMAIL, LINKEDIN_URL, GITHUB_URL, CV_URL } from '../../data/content';
 
-export default function Contact({ lang, copy, id }) {
+/**
+ * The end of the page: one question, one email address, three links.
+ * No form — the point of contact is the address itself.
+ */
+export default function Contact({ copy, id, seal }) {
   return (
-    <section className="contact on-ink" id={id} aria-labelledby="contact-title">
-      <div className="shell contact__grid">
-        <div className="contact__lead">
-          <p className="mono index-mark">{copy.index} / {copy.label}</p>
-          <h2 className="contact__title display" id="contact-title">{copy.title}</h2>
-          <p className="lede contact__body">{copy.body}</p>
+    <section className="contact on-flame" id={id} aria-labelledby="contact-title">
+      <div className="shell contact__inner">
+        <p className="mono index-mark contact__eyebrow">{copy.index} / {copy.label}</p>
 
-          <p className="contact__direct">
-            <span className="mono contact__direct-label">{copy.directLabel}</span>
-            <a className="contact__email" href={`mailto:${SITE_EMAIL}`} data-cursor="cta">
-              {SITE_EMAIL}
-              <span aria-hidden="true"> ↗</span>
+        <div className="contact__headline" data-fit-frame>
+          <FitLines
+            as="h2"
+            className="contact__title display"
+            id="contact-title"
+            lines={copy.titleLines}
+            reveal
+          />
+        </div>
+
+        <p className="lede contact__body" data-reveal="up">{copy.body}</p>
+
+        <p className="contact__email-row" data-reveal="up">
+          <span className="mono contact__email-label">{copy.emailLabel}</span>
+          <a className="contact__email" href={`mailto:${SITE_EMAIL}`} data-cursor="cta">
+            {SITE_EMAIL}
+            <span className="contact__email-arrow" aria-hidden="true">↗</span>
+          </a>
+        </p>
+
+        <ul className="contact__links" data-reveal="group">
+          <li>
+            <a className="link" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+              {copy.links.linkedin}<span className="link__arrow" aria-hidden="true">↗</span>
             </a>
-          </p>
-          <p className="mono contact__note">{copy.responseNote}</p>
+          </li>
+          <li>
+            <a className="link" href={GITHUB_URL} target="_blank" rel="noreferrer">
+              {copy.links.github}<span className="link__arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+          <li>
+            <a className="link" href={CV_URL} target="_blank" rel="noreferrer">
+              {copy.links.cv}<span className="link__arrow" aria-hidden="true">↗</span>
+            </a>
+          </li>
+        </ul>
 
-          <Monogram className="contact__monogram" strokeWidth={1.2} />
-        </div>
+        <p className="mono contact__place">{copy.place}</p>
 
-        <div className="contact__form">
-          <BriefForm lang={lang} copy={copy.form} />
-        </div>
+        <Magnetic className="contact__seal-magnet">
+          <a className="contact__seal" href={`mailto:${SITE_EMAIL}`} data-cursor="cta">
+            <Seal text={seal}>
+              <span aria-hidden="true">↗</span>
+            </Seal>
+            <span className="sr-only">{SITE_EMAIL}</span>
+          </a>
+        </Magnetic>
       </div>
     </section>
   );
