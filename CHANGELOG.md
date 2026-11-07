@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented in this file.
 
+## [0.2.1.0] - 2026-11-07
+
+### Changed
+
+- Reduced oversized headings and improved their fit across desktop and mobile,
+  including when reduced motion is enabled.
+- Updated the Baluarte project link to espectaculosbaluarte.com.
+- Replaced the portrait in shared-link previews with the existing site graphic.
+
+### Removed
+
+- Removed the hero portrait and its image preloads from both languages.
+- Removed all CV links from navigation, experience and contact in both languages.
+- Excluded the portrait files and CV PDF from the published build.
+
 ## [0.2.0.0] - 2026-08-28
 
 ### Changed

@@ -11,7 +11,7 @@ export default function RouteMeta({
   description,
   path,
   lang = 'es',
-  image = '/assets/alejandro-portrait.jpg',
+  image = '/favicon.png',
   type = 'website',
   noIndex = false,
 }) {

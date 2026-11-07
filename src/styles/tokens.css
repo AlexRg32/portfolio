@@ -103,9 +103,9 @@
   --font-accent: 'Clash Display', 'Archivo', 'Archivo Fallback', Arial, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --step-display: clamp(3.4rem, 13vw, 12rem);
-  --step-xl: clamp(2.6rem, 7.4vw, 7rem);
-  --step-lg: clamp(2rem, 4.6vw, 4.2rem);
+  --step-display: clamp(3.1rem, 11.7vw, 10.8rem);
+  --step-xl: clamp(2.4rem, 6.7vw, 6.3rem);
+  --step-lg: clamp(1.8rem, 4.2vw, 3.8rem);
   --step-md: clamp(1.4rem, 2.2vw, 2.1rem);
   --step-sm: clamp(1.1rem, 1.4vw, 1.35rem);
   --step-body: clamp(1.0625rem, 0.34vw + 1rem, 1.25rem);

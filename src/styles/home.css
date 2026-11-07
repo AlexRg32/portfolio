@@ -47,12 +47,11 @@
 }
 .hero__place { color: var(--muted-soft); }
 
-/* --- The headline and the photograph interlock ---------------------- */
+/* --- The headline fills the stage ---------------------------------- */
 .hero__stage {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(190px, 24%, 380px);
-  column-gap: clamp(16px, 2.4vw, 44px);
+  grid-template-columns: minmax(0, 1fr);
   align-items: end;
   min-height: 0;
 }
@@ -67,29 +66,7 @@
   min-height: 0;
 }
 .hero__title { position: relative; z-index: 2; width: 100%; color: var(--ink); }
-.fit-lines { display: block; }
 .hero__lines--narrow { display: none; }
-
-/*
- * A tall column of photograph that runs the height of the type block and
- * pushes up past it, into the metadata row and onto the orange.
- */
-.hero__portrait {
-  position: relative;
-  z-index: 3;
-  grid-column: 2;
-  align-self: stretch;
-  margin-top: clamp(-96px, -7vh, -24px);
-  overflow: hidden;
-  will-change: transform, clip-path;
-}
-.hero__portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 44% 32%;
-  will-change: transform;
-}
 
 .hero__bottom {
   position: relative;
@@ -327,8 +304,6 @@ a:hover > .seal-wrap .seal__core { transform: scale(1.12); }
    Responsive
    ------------------------------------------------------------------ */
 @media (max-width: 1024px) {
-  .hero__portrait { width: min(36vw, 320px); }
-
   .project { align-items: start; }
   .project__media,
   .project:nth-child(even) .project__media { grid-column: 1 / -1; grid-row: 1; }
@@ -352,24 +327,6 @@ a:hover > .seal-wrap .seal__core { transform: scale(1.12); }
   .hero__place { margin-left: 0; flex-basis: 100%; }
   .hero__lines--wide { display: none; }
   .hero__lines--narrow { display: block; }
-
-  /*
-   * The headline sits at the top and the photograph rises behind it, so the
-   * two genuinely overlap. The type stays in front and the overlap falls on
-   * the bright sky at the top of the picture, where ink still reads.
-   */
-  .hero__stage { display: block; }
-  .hero__type { display: block; height: 100%; }
-  .hero__portrait {
-    position: absolute;
-    z-index: 1;
-    right: 0;
-    bottom: -6%;
-    width: 56vw;
-    height: 72%;
-    margin-top: 0;
-  }
-  .hero__portrait img { object-position: 46% 22%; }
 
   .hero__bottom { gap: 14px; }
   .hero__seal-magnet { display: none; }

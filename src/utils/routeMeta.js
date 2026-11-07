@@ -3,7 +3,7 @@ import { projects, content, LINKEDIN_URL, GITHUB_URL } from '../data/content.js'
 export const SITE = {
   name: 'Alejandro Ruiz',
   url: 'https://alexrg.es/',
-  image: '/assets/alejandro-portrait.jpg',
+  image: '/favicon.png',
 };
 
 function withLeadingSlash(value) {
@@ -41,7 +41,6 @@ function personSchema(lang) {
     alternateName: 'Alejandro Ruiz',
     jobTitle: lang === 'es' ? 'Diseñador y desarrollador web' : 'Web designer and developer',
     url: SITE.url,
-    image: absoluteUrl(SITE.image),
     description: content[lang].metaDescription,
     address: { '@type': 'PostalAddress', addressLocality: 'Alicante', addressCountry: 'ES' },
     knowsAbout: ['UX/UI', 'Art direction', 'Frontend development', 'React', 'Laravel', 'Odoo', 'Shopify'],
@@ -81,7 +80,6 @@ export function getPrerenderRoutes() {
       description: content.es.metaDescription,
       path: '/',
       schema: personSchema('es'),
-      preloadImage: true,
     }),
     createMeta({
       title: content.en.metaTitle,
@@ -89,7 +87,6 @@ export function getPrerenderRoutes() {
       path: '/en',
       lang: 'en',
       schema: personSchema('en'),
-      preloadImage: true,
     }),
     createMeta({
       title: 'Privacidad — Alejandro Ruiz',

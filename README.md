@@ -4,7 +4,7 @@ Web del estudio digital independiente de Alejandro Ruiz (Alicante).
 Producción: <https://alexrg.es>
 
 La web está orientada a captar proyectos de diseño y desarrollo web. La acción
-principal en todas las páginas es **Empezar un proyecto**; CV, LinkedIn y GitHub
+principal en todas las páginas es **Empezar un proyecto**; LinkedIn y GitHub
 siguen presentes como prueba de criterio, sin competir con esa acción.
 
 ## Stack

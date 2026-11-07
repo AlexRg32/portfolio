@@ -1,7 +1,6 @@
 export const SITE_EMAIL = 'alexrg32@icloud.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/alejandro-ruiz-gasch-0230542b3/';
 export const GITHUB_URL = 'https://github.com/AlexRg32';
-export const CV_URL = '/assets/CV-AlejandroRuiz.pdf';
 
 /**
  * Every fact below is verifiable: it comes from the live client sites, from
@@ -205,7 +204,7 @@ export const projects = [
     shortTitle: 'Baluarte',
     year: '2026',
     index: '03',
-    url: 'https://espectaculosbaluarte.netlify.app',
+    url: 'https://espectaculosbaluarte.com',
     accent: '#C08A4A',
     surface: '#12100D',
     onSurface: '#F3EBDE',
@@ -325,8 +324,6 @@ export const content = {
       cta: 'Ver proyectos',
       seal: 'Alejandro Ruiz · Diseño y desarrollo web ·',
       sealAction: 'Ver proyectos',
-      portraitAlt: 'Alejandro Ruiz, junto a un lago',
-      portraitCaption: 'Alejandro Ruiz',
       scroll: 'Baja',
     },
     work: {
@@ -352,7 +349,6 @@ export const content = {
       ],
       stackLabel: 'Stack',
       stack: ['React', 'JavaScript', 'Laravel', 'Odoo', 'Shopify'],
-      cv: 'Ver CV',
     },
     contact: {
       index: '03',
@@ -361,7 +357,7 @@ export const content = {
       body: 'Escríbeme y te respondo yo.',
       emailLabel: 'Email',
       place: 'Alicante / remoto',
-      links: { linkedin: 'LinkedIn', github: 'GitHub', cv: 'CV' },
+      links: { linkedin: 'LinkedIn', github: 'GitHub' },
     },
     footer: {
       name: 'Alejandro Ruiz',
@@ -369,7 +365,6 @@ export const content = {
       place: 'Alicante, España',
       localTimeLabel: 'Hora local',
       privacy: 'Privacidad',
-      cv: 'CV',
       backToTop: 'Arriba',
       rights: 'Diseñado y desarrollado por Alejandro Ruiz',
     },
@@ -435,8 +430,6 @@ export const content = {
       cta: 'See projects',
       seal: 'Alejandro Ruiz · Web design & development ·',
       sealAction: 'See projects',
-      portraitAlt: 'Alejandro Ruiz, by a lake',
-      portraitCaption: 'Alejandro Ruiz',
       scroll: 'Scroll',
     },
     work: {
@@ -462,7 +455,6 @@ export const content = {
       ],
       stackLabel: 'Stack',
       stack: ['React', 'JavaScript', 'Laravel', 'Odoo', 'Shopify'],
-      cv: 'View CV',
     },
     contact: {
       index: '03',
@@ -471,7 +463,7 @@ export const content = {
       body: 'Write to me and I answer you myself.',
       emailLabel: 'Email',
       place: 'Alicante / remote',
-      links: { linkedin: 'LinkedIn', github: 'GitHub', cv: 'CV' },
+      links: { linkedin: 'LinkedIn', github: 'GitHub' },
     },
     footer: {
       name: 'Alejandro Ruiz',
@@ -479,7 +471,6 @@ export const content = {
       place: 'Alicante, Spain',
       localTimeLabel: 'Local time',
       privacy: 'Privacy',
-      cv: 'CV',
       backToTop: 'Top',
       rights: 'Designed and developed by Alejandro Ruiz',
     },
