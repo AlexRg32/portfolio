@@ -277,7 +277,7 @@ img { height: auto; }
 .mask-line__inner { display: block; }
 
 /*
- * Lines that fill the exact width of their container. The CSS size is the
+ * Lines sized within their container with room around the glyphs. The CSS size is the
  * floor; useFitText refines it once the real font metrics are known.
  */
 /*
@@ -285,7 +285,10 @@ img { height: auto; }
  * while leaving room above for accents like the tilde on "diseño", which at
  * this leading sit outside the line box.
  */
-.fit-line { display: block; padding-bottom: 0.1em; clip-path: inset(-0.22em 0 0 0); }
+.fit-lines { display: block; }
+/* Measuring at a reference size must not transition through intermediate sizes. */
+.fit-lines, .fit-lines * { transition-property: none; }
+.fit-line { display: block; padding-bottom: 0.12em; clip-path: inset(-0.22em -0.04em 0 -0.04em); }
 /*
  * Block, not inline-block: an inline-block sits on the parent's baseline and
  * drags the line box open, which loosens exactly the leading this design is

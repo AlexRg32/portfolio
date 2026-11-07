@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * Sizes a hand-broken display block so it fills its frame exactly.
+ * Sizes a hand-broken display block to fit comfortably within its frame.
  *
  * This is layout, not motion: it runs whatever the motion preference is. The
  * stylesheet already sets a sane clamp() size, so a line is never unreadable
@@ -16,6 +16,7 @@ export default function useFitText(scope, key = '') {
     if (!boxes.length) return undefined;
 
     const REFERENCE = 100;
+    const FILL_RATIO = 0.9;
 
     const fit = () => {
       boxes.forEach((box) => {
@@ -36,7 +37,7 @@ export default function useFitText(scope, key = '') {
         const stack = box.getBoundingClientRect().height;
         if (!widest || !stack) return;
 
-        const size = Math.min(width / widest, height / stack) * REFERENCE * 0.995;
+        const size = Math.min(width / widest, height / stack) * REFERENCE * FILL_RATIO;
         box.style.fontSize = `${size.toFixed(2)}px`;
       });
     };

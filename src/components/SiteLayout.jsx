@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { content, SITE_EMAIL, LINKEDIN_URL, GITHUB_URL, CV_URL } from '../data/content';
+import { content, SITE_EMAIL, LINKEDIN_URL, GITHUB_URL } from '../data/content';
 import { getLang, homePath, otherLanguagePath, sectionHref, privacyPath } from '../utils/routes';
 import Monogram from './Monogram';
 import IntroCurtain from './IntroCurtain';
@@ -162,7 +162,6 @@ export default function SiteLayout() {
               <li><a href={`mailto:${SITE_EMAIL}`} onClick={closeMenu}>{SITE_EMAIL}<span aria-hidden="true"> ↗</span></a></li>
               <li><a href={LINKEDIN_URL} target="_blank" rel="noreferrer" onClick={closeMenu}>LinkedIn<span aria-hidden="true"> ↗</span></a></li>
               <li><a href={GITHUB_URL} target="_blank" rel="noreferrer" onClick={closeMenu}>GitHub<span aria-hidden="true"> ↗</span></a></li>
-              <li><a href={CV_URL} target="_blank" rel="noreferrer" onClick={closeMenu}>{copy.footer.cv}<span aria-hidden="true"> ↗</span></a></li>
               <li>
                 <Link to={otherLang} lang={lang === 'es' ? 'en' : 'es'} onClick={closeMenu}>
                   {copy.nav.langLabel}

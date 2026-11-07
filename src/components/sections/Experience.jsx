@@ -1,5 +1,4 @@
 import FitLines from '../FitLines';
-import { CV_URL } from '../../data/content';
 
 /**
  * The work history as an editorial timeline: years, company, role. One line
@@ -35,10 +34,6 @@ export default function Experience({ copy, id }) {
           <span className="mono experience__stack-label">{copy.stackLabel}</span>
           <span className="experience__stack-list accent">{copy.stack.join(' · ')}</span>
         </p>
-        <a className="link" href={CV_URL} target="_blank" rel="noreferrer">
-          {copy.cv}
-          <span className="link__arrow" aria-hidden="true">↗</span>
-        </a>
       </div>
     </section>
   );

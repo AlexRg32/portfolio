@@ -9,10 +9,6 @@ const keepAssets = new Set([
   'baluarte-portfolio.jpg',
   'dclick-portfolio.jpg',
   'monica-gallardo-portfolio.jpg',
-  'alejandro-portrait.jpg',
-  'alejandro-hero-384.webp',
-  'alejandro-hero-560.webp',
-  'alejandro-hero-768.webp',
   'monica-gallardo-portfolio-640.webp',
   'monica-gallardo-portfolio-1200.webp',
   'monica-gallardo-portfolio-1800.webp',
@@ -37,7 +33,6 @@ const keepAssets = new Set([
   'baluarte-detail-1800.webp',
   'baluarte-mobile-420.webp',
   'baluarte-mobile-780.webp',
-  'CV-AlejandroRuiz.pdf',
   'grain.png',
 ]);
 
@@ -65,4 +60,4 @@ await prune(
   (name) => BUILT_CHUNK.test(name) || keepAssets.has(name),
 );
 await prune(path.join(dist, 'fonts'), (name) => keepFonts.has(name));
-await Promise.all(['favicon.png', '.DS_Store'].map((name) => fs.rm(path.join(dist, name), { force: true })));
+await fs.rm(path.join(dist, '.DS_Store'), { force: true });

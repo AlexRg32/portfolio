@@ -1,10 +1,10 @@
 import FitLines from '../FitLines';
 import Seal from '../Seal';
 import Magnetic from '../Magnetic';
-import { SITE_EMAIL, LINKEDIN_URL, GITHUB_URL, CV_URL } from '../../data/content';
+import { SITE_EMAIL, LINKEDIN_URL, GITHUB_URL } from '../../data/content';
 
 /**
- * The end of the page: one question, one email address, three links.
+ * The end of the page: one question, one email address, two links.
  * No form — the point of contact is the address itself.
  */
 export default function Contact({ copy, id, seal }) {
@@ -42,11 +42,6 @@ export default function Contact({ copy, id, seal }) {
           <li>
             <a className="link" href={GITHUB_URL} target="_blank" rel="noreferrer">
               {copy.links.github}<span className="link__arrow" aria-hidden="true">↗</span>
-            </a>
-          </li>
-          <li>
-            <a className="link" href={CV_URL} target="_blank" rel="noreferrer">
-              {copy.links.cv}<span className="link__arrow" aria-hidden="true">↗</span>
             </a>
           </li>
         </ul>
